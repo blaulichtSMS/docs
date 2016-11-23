@@ -3,6 +3,7 @@
 ## Version
 - V1_0: Erste Version (2016-08-12)
 - V1_1: Alarm Query Endpoint
+- V1_2: Add recipientConfirmation parameters
 
 ## Encoding
 Encoding ist immer UTF-8.
@@ -26,6 +27,8 @@ Um einen Alarm zu triggern muss man einen POST mit Typ **application/json** auf 
 - type: alarm | info - mandatory - Der Alarmtyp
 - needsAcknowledgement: boolean - mandatory - Antwortfunktion
 - duration: integer - conditional - Dauer der Antwortfunktion in Minuten
+- recipientConfirmation: boolean - optional - SMS Empfangsbestätigung ein- bzw. ausschalten (kostenpflichtig)
+- recipientConfirmationTarget: string - Empfänger für Report zu Empfangsbestätigungen
 - template: string - optional - Alarmtextcode z.b. A1
 - groupCodes: list of strings - optional - Alarmgruppen z.b. G1
 - additionalMsisdns: list of strings - optional - Nummern die zusätzlich alarmiert werden sollen z.B.: ["+4366412345678", "+4367612345678"]
@@ -43,6 +46,7 @@ Ein Beispiel:
         "type" : "alarm",
         "needsAcknowledgement" : true,
         "duration" : 60,
+        "recipientConfirmation" : false,
         "template" : A1,
         "groupCodes" : ["G1", "G2"],
         "additionalMsisdns" : [],
