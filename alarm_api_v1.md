@@ -28,7 +28,7 @@ Um einen Alarm zu triggern muss man einen POST mit Typ **application/json** auf 
 - needsAcknowledgement: boolean - mandatory - Antwortfunktion
 - duration: integer - conditional - Dauer der Antwortfunktion in Minuten
 - recipientConfirmation: boolean - optional - SMS Empfangsbestätigung ein- bzw. ausschalten (kostenpflichtig)
-- recipientConfirmationTarget: string - Empfänger für Report zu Empfangsbestätigungen
+- recipientConfirmationTarget: string - optional - Empfänger für Report zu Empfangsbestätigungen
 - template: string - optional - Alarmtextcode z.b. A1
 - groupCodes: list of strings - optional - Alarmgruppen z.b. G1
 - additionalMsisdns: list of strings - optional - Nummern die zusätzlich alarmiert werden sollen z.B.: ["+4366412345678", "+4367612345678"]
