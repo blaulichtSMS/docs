@@ -4,6 +4,7 @@
 - V1_0: Erste Version (2016-08-12)
 - V1_1: Alarm Query Endpoint
 - V1_2: Add recipientConfirmation parameters
+- V1_3: Add List Endpoint
 
 ## Encoding
 Encoding ist immer UTF-8.
@@ -96,6 +97,37 @@ Im Erfolgsfall erhält man z.B. folgendes Resultat. Die möglichen Werte für **
         "alarmData" :  { siehe Beschreibung AlarmData Object }
     }
 
+
+### LIST ALARM
+/api/alarm/v1/list
+
+Um eine Liste von Alarmen zu erhalten muss man einen POST mit Typ **application/json** auf die oben angebene URL absenden. Man erhält eine Liste von AlarmData Objekten. Es werden maximal 100 Alarme geliefert - sortiert nach Enddatum des Alarms.
+
+- username: string - mandatory - Benutzername
+- password: string - mandatory - Passwort
+- customerIds: list of string - mandatory - Liste von Kundennummern
+- startDate: date in iso format - optional - Startdatum der Suche (alle Alarme mit End-Datum danach werden geliefert)
+- endDate: date in iso format - optional - Enddatum der Suche (alle Alarme mit Start-Datum davor werden geliefert)
+
+Ein Beispiel:
+
+    {
+        "username" : "myUser",
+        "password" : "mySuperSecretPwd",
+        "customerIds" : ["100027", "900027"],
+        "startDate" : "2016-01-01T17:00:00.000Z",
+        "endDate" : "2016-01-01T17:30:00.000Z"
+    }
+
+Im Erfolgsfall erhält man z.B. folgendes Resultat. Die möglichen Werte für **result** sind weiter unten angegeben. Im Fehlerfall ist dem Feld **description** eine Beschreibung des Fehlers zu entnehmen.
+
+    {
+        "result" : "OK",
+        "description" : "ok",
+        "alarms" :  [{ siehe Beschreibung AlarmData Object }]
+    }
+
+
 #### Coordinate
 - lat: double - mandatory- Breitengrad
 - lon: double - mandatory - Längengrad
@@ -108,7 +140,8 @@ Ein Beispiel:
     }
 
 #### AlarmData
-- alarmid: Der eindeutige Identifier des Alarms
+- customerId: Die Kundennummer zu der dieser Alarm gehört
+- alarmId: Der eindeutige Identifier des Alarms
 - alarmGroups: Liste der Alarmgruppen Elemente (siehe AlarmGroup Object)
 - alarmDate : Zeitpunkt der Alarmierung
 - endDate: Ende der Antwortfunktion (falls aktiviert)
@@ -126,6 +159,7 @@ Ein Beispiel:
 Ein Beispiel:
 
     {
+        "customerId" : "100027",
         "alarmId" : "32849abcdef23343",
         "alarmGroups" : [ ], // list of AlarmGroup elements
         "alarmDate"  : "2016-01-01T17:30:21.345Z", // UTC date
