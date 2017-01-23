@@ -1,25 +1,31 @@
-#BlaulichtSms API Beschreibung für die automatische Alarmierung
+#BlaulichtSMS Alarm API
 
 ## Version
 - V1.0: Erste Version (2016-08-12)
 - V1.1: Alarm Query Endpoint
-- V1.2: Add recipientConfirmation parameters
-- V1.3: Add List Endpoint
-- V1.4: Adapt Alarm Data element - remove participation, geolocation (2017-01-19)
+- V1.2: recipientConfirmation Parameter hinzugefügt
+- V1.3: List Alarm Endpunkt hinzugefügt
+- V1.4: Änderung des Alarm Data Element: Erweiterung der recipients, Deprecation der participants, Geolocation hinzugefügt (2017-01-19)
 
-## Encoding
+## Allgemein
+
+### Encoding
 Encoding ist immer UTF-8.
 
-## Test Basis URL
+### Test Basis URL
 https://blaulicht-dev.alpspay.com/blaulicht
 
-## Live Basis URL
+### Live Basis URL
 https://api.blaulichtsms.net/blaulicht
 
-### Trigger Alarm
-/api/alarm/v1/trigger
+##  Alarm API
 
-Um einen Alarm zu triggern muss man einen POST mit Typ **application/json** auf die oben angebene URL absenden.
+Für die Verwendung dieser muss man als "Automatisierter Alarmgeber" im System hinterlegt sein und erhält einen Benutzernamen und Passwort.
+
+### Trigger Alarm
+_**/api/alarm/v1/trigger**_
+
+Um einen Alarm zu triggern muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden.
 
 - username: string - mandatory - Benutzername
 - password: string - mandatory - Passwort
@@ -70,9 +76,9 @@ Im Erfolgsfall erhält man z.B. folgendes Resultat. Die möglichen Werte für **
 
 
 ### QUERY ALARM
-/api/alarm/v1/query
+_**/api/alarm/v1/query**_
 
-Um einen Alarm zu triggern muss man einen POST mit Typ **application/json** auf die oben angebene URL absenden.
+Um einen Alarm zu suchen muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden.
 
 - username: string - mandatory - Benutzername
 - password: string - mandatory - Passwort
@@ -100,9 +106,9 @@ Im Erfolgsfall erhält man z.B. folgendes Resultat. Die möglichen Werte für **
 
 
 ### LIST ALARM
-/api/alarm/v1/list
+_**/api/alarm/v1/list**_
 
-Um eine Liste von Alarmen zu erhalten muss man einen POST mit Typ **application/json** auf die oben angebene URL absenden. Man erhält eine Liste von AlarmData Objekten. Es werden maximal 100 Alarme geliefert - sortiert nach Enddatum des Alarms.
+Um eine Liste von Alarmen zu erhalten muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden. Man erhält eine Liste von AlarmData Objekten. Es werden maximal 100 Alarme geliefert - sortiert nach Enddatum des Alarms.
 
 - username: string - mandatory - Benutzername
 - password: string - mandatory - Passwort
@@ -128,18 +134,6 @@ Im Erfolgsfall erhält man z.B. folgendes Resultat. Die möglichen Werte für **
         "alarms" :  [{ siehe Beschreibung AlarmData Object }]
     }
 
-
-#### Coordinate
-- lat: double - mandatory- Breitengrad
-- lon: double - mandatory - Längengrad
-
-Ein Beispiel:
-
-    {
-        "lat" : 48.205587,
-        "lon" : 16.342917
-    }
-
 #### AlarmData
 - customerId: Die Kundennummer zu der dieser Alarm gehört
 - alarmId: Der eindeutige Identifier des Alarms
@@ -160,15 +154,15 @@ Ein Beispiel:
     {
         "customerId" : "100027",
         "alarmId" : "32849abcdef23343",
-        "alarmGroups" : [ ], // list of AlarmGroup elements
-        "alarmDate"  : "2016-01-01T17:30:21.345Z", // UTC date
-        "endDate"  : "2016-01-01T17:30:21.345Z", // UTC date
+        "alarmGroups" : [ ], // Liste von AlarmGroup Elementen
+        "alarmDate"  : "2016-01-01T17:30:21.345Z", // UTC Datum
+        "endDate"  : "2016-01-01T17:30:21.345Z", // UTC Datum
         "authorName" : "Max Mustermann",
         "alarmText" : "Das ist ein Probealarm",
         "needsAcknowledgement" : true,
         "usersAlertedCount" : 10,
         "geolocation" : { }, // see GeoLocation object
-        "recipients" : [ ], // list of AlarmRecipient elements
+        "recipients" : [ ], // Liste von AlarmRecipient Elementen
         "audioUrl" : null
     }
 
@@ -185,7 +179,7 @@ Ein Beispiel:
         "id" : "2342343242342abcde32423423",
         "name" : "Martina Musterfrau",
         "msisdn" : "+4366412345678"
-        "participation" : "yes", // one of yes, no, unknown, pending
+        "participation" : "yes", // eines von yes | no | uknown | pending
         "participationMessage" : "Komme 5 Minuten später"
     }
 
@@ -196,13 +190,13 @@ Ein Beispiel:
             "lat" : 17.34334,
             "lon" : 23.32343
         },
-        "positionSetByAuthor" : true, // whether coordinates are set by author or calculated,
-        "radius" : 0, // radius in m - can be null
-        "distance" : 0, // distance in m - can be null
-        "address" : "Musterstraße 1, 1010 Wien" // address in text format
+        "positionSetByAuthor" : true, // Wenn die Koordinaten durch den Autor gesetzt wurden
+        "radius" : 10, // Radius in m (Kann auch null sein)
+        "distance" : 10, // Distanz in m (Kann auch null sein)
+        "address" : "Musterstraße 1, 1010 Wien" // Adresse im Textformat (Kann auch null sein)
     }
 
-#### Result Codes
+#### Ergebnis Codes
 - OK
 - MISSING_INPUT_DATA
 - MISSING_CUSTOMER_ID

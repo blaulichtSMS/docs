@@ -1,16 +1,28 @@
-#BlaulichtSms API description for Alarm Dashboard
+#BlaulichtSMS Dashboard API
 
-## Version Information
-- V1.0: Initial Version (2016-08-12)
-- V1.1: Add integrations, adapt alarm data (2017-01-19)
+## Version
+- V1.0: Erste Version (2016-08-12)
+- V1.1: Integrationen hinzugefügt, AlarmData Element angepasst (2017-01-19)
 
-## Endpoints
-There are two endpoints for the alarm dashboard. Encoding is always UTF-8.
+## Allgemein
+
+### Encoding
+Encoding ist immer UTF-8.
+
+### Test Basis URL
+https://blaulicht-dev.alpspay.com/blaulicht
+
+### Live Basis URL
+https://api.blaulichtsms.net/blaulicht
+
+## Dashboard API
+
+Für die Verwendung der Dashboard API wird ein Dashboard User benötigt. 
 
 ### Login
-/api/alarm/v1/dashboard/login
+_**/api/alarm/v1/dashboard/login**_
 
-You need to perform a POST with the following **application/json** data to login and receive a valid session identifier.
+Um einen Login durchzuführen muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden.
 
     {
         "username" : "myUser",
@@ -18,7 +30,7 @@ You need to perform a POST with the following **application/json** data to login
         "customerId" : "K123456"
     }
 
-Upon success you will receive a response in the following format:
+Nach einem erfolgreichen Login erhält man die Session ID:
 
     {
         "success" : true,
@@ -26,14 +38,14 @@ Upon success you will receive a response in the following format:
         "error" : null
     }
 
-You should store the sessionId in a cookie/session storage to have it available for further requests.
+Die Session ID muss in einem Cookie / LocalStorage / SessionStorage gespeichert werden und für die nächsten Requests verwendet werden.
 
-Upon error you will receive e.g.:
+Im Fehlerfall erhält man folgende Antwort:
 
     {
         "success" : false,
         "sessionId" : null,
-        "error" : "MISSING_INPUT_DATA" //for error codes see below
+        "error" : "MISSING_INPUT_DATA" //für Error codes, siehe unten
     }
 
 #### Error Codes
@@ -43,51 +55,55 @@ Upon error you will receive e.g.:
 - MISSING_USERNAME
 - INVALID_CREDENTIALS
 
-Please note that only one session is supported for a user at a certain time. All older sessions might be invalidated upon a successful login.
+Es wird immer nur eine paralelle Session unterstützt. 
 
-### Alarm Data Query
-/api/alarm/v1/dashboard/<sessionId>
+### Dasboard Informationen
+_**/api/alarm/v1/dashboard/{{sessionId}}**_
 
-You need to perform a GET request using your sessionId in the path.
+Um Dashboard Informationen zu erhalten muss man einen HTTP GET Request auf die oben angebene URL absenden.
 
 
-If the session has expired you will get a **HTTP 401 Unauthorized** response.
+Wenn die Session abgelaufen ist, erhält man eine **HTTP 401 Unauthorized** Antwort.
 
-If the session is valid you will receive a **HTTP 200 OK** response in **application/json** format with the following content:
+Bei einer validen Session wird eine **HTTP 200 OK** Antwort im **json** Format mit folgendem Inhalt versendet:
 
     {
         "customerId" : "K123456",
         "customerName" : "FF Test",
-        "integrations" : [ ], //list of AlarmIntegration elements
-        "alarms" : [ ], //list of AlarmData elements
-        "infos" : [ ] //list of AlarmData elements
+        "integrations" : [ ], // Liste an Integrationen
+        "alarms" : [ ], // Liste von AlarmData Elementen
+        "infos" : [ ] // List von AlarmData Elementen
     }
 
-Note that the latest alarm/info is always returned. In addition all alarms/infos active in the last 24 hours will be returned.
+Es wird immer der letzte Alarm versendet und alle in den letzten 24 Stunden aktive Alarme
 
 #### AlarmData
-For each alarm a AlarmData element will be returned in the following format:
+- alarmId: Der eindeutige Identifier des Alarms
+- alarmGroups: Liste der Alarmgruppen Elemente (siehe AlarmGroup Object)
+- alarmDate : Zeitpunkt der Alarmierung
+- endDate: Ende der Antwortfunktion (falls aktiviert)
+- authorName: Name des Alarmgebers der den Alarm ausgelöst hat
+- alarmText: Der Alarmierungstext
+- needsAcknowledgement: Ob die Antwortfunktion aktiviert ist
+- usersAlertedCount: Anzahl der alarmierten Personen
+- geolocation: Siehe GeoLocation Object
+- recipients: Liste der Alarmteilnehmer - siehe AlarmRecipient Object
+- audioUrl: Url zum Abspielen des Audio-Alarms, falls ein solcher ausgelöst wurde
+
+
+Ein Beispiel:
 
     {
         "alarmId" : "32849abcdef23343",
-        "alarmGroups" : [ ], // list of AlarmGroup elements
-        "alarmDate"  : "2016-01-01T17:30:21.345Z", // UTC date
-        "endDate"  : "2016-01-01T17:30:21.345Z", // UTC date
+        "alarmGroups" : [ ], // Liste von AlarmGroup Elementen
+        "alarmDate"  : "2016-01-01T17:30:21.345Z", // UTC Datum
+        "endDate"  : "2016-01-01T17:30:21.345Z", // UTC Datum
         "authorName" : "Max Mustermann",
         "alarmText" : "Das ist ein Probealarm",
         "needsAcknowledgement" : true,
         "usersAlertedCount" : 10,
-        "geolocation" : {
-          "coordinates" : {
-              "lat" : 17.34334,
-              "lon" : 23.32343
-          },
-          "positionSetByAuthor" : true, //if coordinates are from alarm author,
-          "radius" : 10, //radius in m - might be null
-          "distance" : 10, // distance in m - might be null
-          "address" : null // textual address string
-        }
-        "recipients" : [ ], // list of AlarmRecipient elements
+        "geolocation" : { }, // GeoLocation Element
+        "recipients" : [ ], // Liste von AlarmRecipient Elementen
         "audioUrl" : null
     }
 
@@ -104,16 +120,29 @@ For each alarm a AlarmData element will be returned in the following format:
         "id" : "2342343242342abcde32423423",
         "name" : "Martina Musterfrau",
         "msisdn" : "+4366412345678"
-        "participation" : "yes", //one of yes | no | uknown | pending
+        "participation" : "yes", // eines von yes | no | uknown | pending
         "participationMessage" : "Komme 5 Minuten später",
     }
+
+#### GeoLocation
+
+    {
+        "coordinates" : {
+            "lat" : 17.34334,
+            "lon" : 23.32343
+        },
+        "positionSetByAuthor" : true, // Wenn die Koordinaten durch den Autor gesetzt wurden
+        "radius" : 10, // Radius in m (Kann auch null sein)
+        "distance" : 10, // Distanz in m (Kann auch null sein)
+        "address" : "Musterstraße 1, 1010 Wien" // Adresse im Textformat (Kann auch null sein)
+    }
+
 
 #### AlarmIntegration
 
     {
        "type" : "wasserkarte.info",
-       "fields" : { //json object containing config information
+       "fields" : { // JSON Object mit folgender Information
            "apiKey" : "23423ldjsakfjdsflj34343"
        }
     }
-

@@ -1,10 +1,10 @@
 <?php
 
-const TRIGGER_URL = 'https://blaulicht-dev2.alpspay.com/blaulicht/api/alarm/v1/trigger';
+const TRIGGER_URL = 'https://api.blaulichtsms.net/blaulicht/api/alarm/v1/trigger';
 
-const CUSTOMER_ID = '999999';
-const USERNAME = 'post-test';
-const PASSWORD = '123dabei';
+const CUSTOMER_ID = '';
+const USERNAME = '';
+const PASSWORD = '';
 
 const ADDITIONAL_MSISDNS = ['+43660123456789'];
 const GROUPS = ['G1'];
