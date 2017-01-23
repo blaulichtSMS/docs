@@ -16,9 +16,9 @@ nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) a
 
 > Informationen zum aktuellen Alarm und Teilnehmer für Feuerwehren mit einem Einsatzmonitor.
 
-API Beschreibung : [Dashboard API](./dashboard_api_v1.md) 
+* API Beschreibung : [Dashboard API](./dashboard_api_v1.md) 
 
-Um die Dashboard API zu verwenden benötigen Sie die Zugangsdaten zu Ihrem Einsatzmonitor, falls Sie diese noch nicht haben 
+Um die Dashboard API zu verwenden, benötigen Sie die Zugangsdaten zu Ihrem Einsatzmonitor, falls Sie diese noch nicht haben, 
 nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) auf.
 
 ## Fragen & Probleme
