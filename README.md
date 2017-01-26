@@ -1,4 +1,4 @@
-# blaulichtSMS Integration
+# blaulichtSMS Docs
 
 ## API
 
@@ -7,7 +7,7 @@
 > Erstellen und Suchen von Alarmen für Automatisierte Alarmgeber und Leitstellen
 
 * API Beschreibung: [Alarm API](./alarm_api_v1.md)
-* PHP Beispielimplementation: [Alarm API PHP Beispiel](./examples/blaulicht.php)
+* PHP Beispielimplementation: [Alarm API PHP Beispiel](./examples/alarm-api/php/alarm-api-example.php)
 
 Um API Zugangsdaten für einen Automatisierten Alarmgeber zu erhalten, 
 nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) auf.
@@ -17,6 +17,8 @@ nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) a
 > Informationen zum aktuellen Alarm und Teilnehmer für Feuerwehren mit einem Einsatzmonitor.
 
 * API Beschreibung : [Dashboard API](./dashboard_api_v1.md) 
+* Javascript Beispielimplementation : [Dashboard API Javascript Beispiel](examples/dashboard-api/javascript/dashboard-api-example.html) 
+* PHP Beispielimplementation : [Dashboard API PHP Beispiel](./examples/dashboard-api/php/) 
 
 Um die Dashboard API zu verwenden, benötigen Sie die Zugangsdaten zu Ihrem Einsatzmonitor, falls Sie diese noch nicht haben, 
 nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) auf.

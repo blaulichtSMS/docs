@@ -1,0 +1,32 @@
+<script type="text/javascript">
+
+    // FILL IN THE SESSION ID BELOW
+    const SESSION_ID = ''; // received after login
+
+    let dashboardUrl = 'https://api.blaulichtsms.net/blaulicht/api/alarm/v1/dashboard/' + SESSION_ID;
+
+    const displayParticipationMessage = function (dashboardJSON) {
+        const dashboard = JSON.parse(dashboardJSON);
+
+        dashboard.alarms.forEach(function (alarm) {
+            alarm.recipients.forEach(function (recipient) {
+                document.write(recipient.name + ' ' + recipient.participation + ' ' + recipient.participationMessage + '<br>');
+            });
+            document.write('<hr>');
+        });
+    };
+
+
+    const loadDashboard = function (url, callback) {
+        const xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
+        };
+        xmlHttp.open("GET", url, true); // true for asynchronous
+        xmlHttp.send(null);
+    };
+
+
+    loadDashboard(dashboardUrl, displayParticipationMessage);
+</script>
