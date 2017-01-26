@@ -34,12 +34,13 @@ Um einen Alarm zu triggern muss man einen HTTP POST Request mit dem Header: `Con
 - alarmText: string - optional - Der Alarmtext
 - type: alarm | info - mandatory - Der Alarmtyp
 - needsAcknowledgement: boolean - mandatory - Antwortfunktion
+- startDate: string - optional - Das Startdatum für den Alarm, falls der Alarm in der Zukunft starten soll. Der Timestamp muss im UTC Format übertragen werden z.B. :`2017-01-27T14:49:52.000Z` 
 - duration: integer - conditional - Dauer der Antwortfunktion in Minuten
 - recipientConfirmation: boolean - optional - SMS Empfangsbestätigung ein- bzw. ausschalten (kostenpflichtig)
 - recipientConfirmationTarget: string - optional - Empfänger für Report zu Empfangsbestätigungen
 - template: string - optional - Alarmtextcode z.b. A1
 - groupCodes: list of strings - optional - Alarmgruppen z.b. G1
-- additionalMsisdns: list of strings - optional - Nummern die zusätzlich alarmiert werden sollen z.B.: ["+4366412345678", "+4367612345678"]
+- additionalMsisdns: list of strings - optional - Nummern die zusätzlich alarmiert werden sollen z.B.: `["+4366412345678", "+4367612345678"]`
 - coordinates: object of Type Coordinate - optional - Alarmkoordinaten
 
 Ein Beispiel:
