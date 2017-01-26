@@ -15,7 +15,7 @@ $login_request_body = [
 
 $ch = curl_init();
 
-curl_setopt($ch, CURLOPT_URL, DASHBOARD_URL);
+curl_setopt($ch, CURLOPT_URL, LOGIN_URL);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
