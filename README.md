@@ -28,6 +28,11 @@ nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) a
 * Bei technischen Fragen erstellen Sie bitte ein Issue [hier](https://github.com/blaulichtSMS/docs/issues/new)
 * Bei administrativen Fragen nehmen sie bitte [hier mit uns Kontakt auf](https://start2.blaulichtsms.net/de/contact)
 
+### Testzugang
+
+Für alle Entwickler bieten wir einen kostenfreien (limitierten) Testzugang an. Falls Sie Interresse haben, nehmen sie
+ bitte [hier mit uns Kontakt auf](https://start2.blaulichtsms.net/de/contact). 
+
 ## Deprecation
 
 Wir unterstützen nur die API Felder, die in den API Beschreibungen definiert werden.

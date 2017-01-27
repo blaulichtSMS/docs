@@ -9,10 +9,7 @@
 ### Encoding
 Encoding ist immer UTF-8.
 
-### Test Basis URL
-https://blaulicht-dev.alpspay.com/blaulicht
-
-### Live Basis URL
+### Basis URL
 https://api.blaulichtsms.net/blaulicht
 
 ## Dashboard API
@@ -23,6 +20,7 @@ Für die Verwendung der Dashboard API wird ein Dashboard User benötigt.
 _**/api/alarm/v1/dashboard/login**_
 
 Um einen Login durchzuführen muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden.
+Die Benutzerdaten hierfür sind, die selben, die für den Login auf [https://dashboard.blaulichtsms.net](https://dashboard.blaulichtsms.net/#/).
 
     {
         "username" : "myUser",
