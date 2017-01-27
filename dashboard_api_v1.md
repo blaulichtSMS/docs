@@ -20,7 +20,7 @@ Für die Verwendung der Dashboard API wird ein Dashboard User benötigt.
 _**/api/alarm/v1/dashboard/login**_
 
 Um einen Login durchzuführen muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden.
-Die Benutzerdaten hierfür sind, die selben, die für den Login auf [https://dashboard.blaulichtsms.net](https://dashboard.blaulichtsms.net/#/).
+Die Benutzerdaten hierfür sind die selben, die für den Login auf [https://dashboard.blaulichtsms.net](https://dashboard.blaulichtsms.net/#/) verwendet werden.
 
     {
         "username" : "myUser",
