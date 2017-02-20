@@ -3,7 +3,6 @@
 
 ## Alarm API
 
-
 > Erstellen und Suchen von Alarmen für Automatisierte Alarmgeber und Leitstellen
 
 
@@ -18,7 +17,6 @@ nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) a
  
 ## Dashboard API
 
-
 > Informationen zum aktuellen Alarm und Teilnehmer für Feuerwehren mit einem Einsatzmonitor.
 
 
@@ -30,6 +28,15 @@ nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) a
 
 Um die Dashboard API zu verwenden, benötigen Sie die Zugangsdaten zu Ihrem Einsatzmonitor, falls Sie diese noch nicht haben, 
 nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) auf.
+
+
+## Import API
+
+> Import von Alarmteilnehmern via JSON oder csv.
+> 
+> ACHTUNG: Diese API überschreibt alle vorhandenen Daten.
+
+* API Beschreibung: [Import API](./import_api_v1.md)
 
 
 ## Fragen & Probleme
