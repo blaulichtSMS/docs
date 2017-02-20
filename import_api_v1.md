@@ -17,8 +17,6 @@ https://api.blaulichtsms.net/blaulicht
 
 ##  Import API
 
-Für die Verwendung dieser API muss ein Benutzer im Blaulicht-System mit der Rolle *Import* hinterlegt sein. Diese Rolle kann Kundenbereich unter "Nutzungsverwaltung" vergeben werden.
-
 Diese API ist ein zusätzliches Angebot zum bestehenden Import im [BlaulichtSMS Kundenbereich](https://start2.blaulichts.sms.net).
 
 
