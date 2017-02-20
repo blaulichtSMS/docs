@@ -17,28 +17,22 @@ https://api.blaulichtsms.net/blaulicht
 
 ##  Import API
 
-Für die Verwendung dieser API muss ein Benutzer im Blaulicht-System mit der Rolle *Import* hinterlegt sein. Diese Rolle 
-kann Kundenbereich unter "Nutzungsverwaltung" vergeben werden.
+Für die Verwendung dieser API muss ein Benutzer im Blaulicht-System mit der Rolle *Import* hinterlegt sein. Diese Rolle kann Kundenbereich unter "Nutzungsverwaltung" vergeben werden.
 
-Diese API ist ein zusätzliches Angebot zum bestehenden Import im 
-[BlaulichtSMS Kundenbereich](https://start2.blaulichts.sms.net).
+Diese API ist ein zusätzliches Angebot zum bestehenden Import im [BlaulichtSMS Kundenbereich](https://start2.blaulichts.sms.net).
 
 
 **Vorsicht**:
->Bei einem Import werden vorhandene Daten (z.B. Alarmteilnehmer) und alle Änderungen, die an diesen vorgenommen wurden 
->gelöscht und mit den neuen Daten überschrieben. Diese Schnittstelle ist also vor allem in Fällen sinnvoll zu 
->verwenden, wo die Verwaltung der Alarmteilnehmer in einem Drittsystem durchgeführt wird.
+>Bei einem Import werden vorhandene Daten (z.B. Alarmteilnehmer) und alle Änderungen, die an diesen vorgenommen wurden gelöscht und mit den neuen Daten überschrieben. Diese Schnittstelle ist also vor allem in Fällen sinnvoll zu verwenden, wo die Verwaltung der Alarmteilnehmer in einem Drittsystem durchgeführt wird.
 >
->Zusätzlich wird empfohlen die Importfunktion mit einem Testaccount / auf einem Testsystem zu testen, um Datenverlust
->zu vermeiden.
+>Zusätzlich wird empfohlen die Importfunktion mit einem Testaccount / auf einem Testsystem zu testen, um Datenverlust zu vermeiden.
 
 Die Authentifizierung findet über Kundennummer, Benutzernamen und Passwort statt.
 
 ### Import Alarmteilnehmer - JSON
 _**/api/portal/v1/import/participants/json**_
 
-Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL können die 
-Alarmteilnehmer eines Kunden importiert werden.
+Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL können die Alarmteilnehmer eines Kunden importiert werden.
 
 - customerId: string - Pflichtfeld - Kundennummer
 - username: string - Pflichtfeld - Benutzername
@@ -53,8 +47,7 @@ Alarmteilnehmer eines Kunden importiert werden.
 - email: string - Optional - E-Mail Adresse
 - groups: Liste von strings - Pflichtfeld - Alarmgruppen
 
-Sollten keine Alarmgruppen im Quellsystem verwaltet werden, empfehlen wir für alle Teilnehmer immer die Gruppe G1 
-anzugeben, da es sich dabei in der Regel um die allgemeine Alarmgruppe handelt.
+Sollten keine Alarmgruppen im Quellsystem verwaltet werden, empfehlen wir für alle Teilnehmer immer die Gruppe G1 anzugeben, da es sich dabei in der Regel um die allgemeine Alarmgruppe handelt.
 
 #### Ein Beispiel
 
@@ -82,8 +75,7 @@ anzugeben, da es sich dabei in der Regel um die allgemeine Alarmgruppe handelt.
 
 Im Erfolgsfall erhält man HTTP 200 OK ohne Inhalt.
 
-Im Fehlerfall wird ein HTTP Fehlercode geliefert, sowie in der Regel auch eine textuelle Beschreibung des Problems, um 
-das debuggen zu erleichtern.
+Im Fehlerfall wird ein HTTP Fehlercode geliefert, sowie in der Regel auch eine textuelle Beschreibung des Problems, um das debuggen zu erleichtern.
 
 Folgende Fehler können typischerweise auftreten:
 
@@ -95,8 +87,7 @@ Folgende Fehler können typischerweise auftreten:
 ### Import Alarmteilnehmer - CSV
 _**/api/portal/v1/import/participants/csv/{{customerId}}**_
 
-Die CSV Schnittstelle funktioniert wie die JSON Schnittstelle oben - es gelten die gleichen Richtlinien hinsichtlich 
-Pflichtfelder, Format und optionale Felder und es werden die gleichen Fehlercodes zurückgegeben.
+Die CSV Schnittstelle funktioniert wie die JSON Schnittstelle oben - es gelten die gleichen Richtlinien hinsichtlich Pflichtfelder, Format und optionale Felder und es werden die gleichen Fehlercodes zurückgegeben.
 
 Folgende Header müssen bei dem HTTP POST Request auf die CSV Schnittstelle inkludiert werden:
 
@@ -112,9 +103,7 @@ Folgende Spalten (getrennt durch **;**) werden eingelesen:
 - email
 - groups
 
-Entscheidend ist die Reihenfolge der Daten, nicht die Beschriftung im Header. Die erste Zeile ist für den Header 
-reserviert und wird beim Import übersprungen. Leere Zeilen am Ende des Files können zu Problemen führen und sollten 
-nicht mitgeschickt werden. Gruppen sind per Beistrich (ohne Leerzeichen) zu trennen.
+Entscheidend ist die Reihenfolge der Daten, nicht die Beschriftung im Header. Die erste Zeile ist für den Header reserviert und wird beim Import übersprungen. Leere Zeilen am Ende des Files können zu Problemen führen und sollten nicht mitgeschickt werden. Gruppen sind per Beistrich (ohne Leerzeichen) zu trennen.
 
 #### Ein Beispiel
 
