@@ -51,7 +51,7 @@ Sollten keine Alarmgruppen im Quellsystem verwaltet werden, empfehlen wir für a
 
     {
         "customerId" : "100027",
-        "username" : "myUser",
+        "username" : "import",
         "password" : "mySuperSecretPwd",
         "participants" : [
         {
