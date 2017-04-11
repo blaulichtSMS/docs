@@ -8,7 +8,7 @@
 
 * API Beschreibung: [Alarm API](./alarm_api_v1.md)
 * PHP Beispielimplementation: [Alarm API PHP Beispiel](./examples/alarm-api/php/alarm-api-example.php)
-* Häufig gestellte Fragen: [FAQ Alarm API](https://github.com/blaulichtSMS/docs/issues?q=label:alarm-api label:question)
+* Häufig gestellte Fragen: [FAQ Alarm API](https://github.com/blaulichtSMS/docs/issues?q=label:alarm-api%20label:question)
 
 
 Um API Zugangsdaten für einen Automatisierten Alarmgeber zu erhalten, nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) auf.
@@ -22,7 +22,7 @@ Um API Zugangsdaten für einen Automatisierten Alarmgeber zu erhalten, nehmen Si
 * API Beschreibung : [Dashboard API](./dashboard_api_v1.md) 
 * Javascript Beispielimplementation : [Dashboard API Javascript Beispiel](examples/dashboard-api/javascript/dashboard-api-example.html) 
 * PHP Beispielimplementation : [Dashboard API PHP Beispiel](./examples/dashboard-api/php/) 
-* Häufig gestellte Fragen: [FAQ Dashboard API](https://github.com/blaulichtSMS/docs/issues?q=label:dashboard-api label:question) 
+* Häufig gestellte Fragen: [FAQ Dashboard API](https://github.com/blaulichtSMS/docs/issues?q=label:dashboard-api%20label:question) 
 
 
 Um die Dashboard API zu verwenden, benötigen Sie die Zugangsdaten zu Ihrem Einsatzmonitor, falls Sie diese noch nicht haben, nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) auf.
