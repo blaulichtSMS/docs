@@ -24,7 +24,7 @@ Der Alarmcode setzt sich aus verschiedenen Konfigurationen zusammen. Eine Konfig
 #### Alarmcode
 
 - **K**{{customerId}} - mandatory -  Kundennummer z.B. `K100027`
-- **G**{{groupId}} - mandatory - Alarmgrubbe z.B. `G1`
+- **G**{{groupId}} - mandatory - Alarmgruppe z.B. `G1`
 - **A**{{templateId}} - optional - Alarmvorlabe z.B. `A1`
 - **Q**0 - optional - Falls vorhanden: Antwortfunktion ist aktiv
 - **I**0 - optional - Falls vorhanden: Alarm ist eine Info
