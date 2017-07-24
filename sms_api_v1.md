@@ -8,7 +8,8 @@
 ### Zielrufnummern:
 
 **Österreich:** +43 (0) 82822100
-**Deutshland:** +49 (0) 1771783998
+
+**Deutschland:** +49 (0) 1771783998
 
 ##  SMS API
 
