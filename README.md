@@ -13,6 +13,17 @@
 
 Um API Zugangsdaten für einen Automatisierten Alarmgeber zu erhalten, nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) auf.
 
+## SMS API
+
+> Erstellen von Alarmen via SMS
+
+
+* API Beschreibung: [SMS API](./sms_api_v1.md)
+* Häufig gestellte Fragen: [FAQ SMS API](https://github.com/blaulichtSMS/docs/issues?q=label:sms-api%20label:question)
+
+
+Um eine Freischaltung der Absendernummern zu erhalten, nehmen Sie bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) auf.
+
  
 ## Dashboard API
 

@@ -1,4 +1,4 @@
-#BlaulichtSMS Alarm API
+# BlaulichtSMS Alarm API
 
 ## Version
 - V1.0: Erste Version (2016-08-12)
@@ -20,7 +20,7 @@ https://api.blaulichtsms.net/blaulicht
 
 ##  Alarm API
 
-Für die Verwendung dieser muss man als "Automatisierter Alarmgeber" im System hinterlegt sein und erhält einen Benutzernamen und Passwort.
+Für die Verwendung dieser API muss man als "Automatisierter Alarmgeber" im System hinterlegt sein und erhält einen Benutzernamen und Passwort.
 
 ### Trigger Alarm
 _**/api/alarm/v1/trigger**_
@@ -30,9 +30,10 @@ Um einen Alarm zu triggern muss man einen HTTP POST Request mit dem Header: `Con
 - username: string - mandatory - Benutzername
 - password: string - mandatory - Passwort
 - customerId: string - mandatory - Kundennummer
+- type: alarm | info - mandatory - Der Alarmtyp
 - hideTriggerDetails: boolean - optional - Alarmgeberdetails nicht mitsenden
 - alarmText: string - optional - Der Alarmtext
-- type: alarm | info - mandatory - Der Alarmtyp
+- indexNumber: integer- optional - Die Index Nummer dient zur Identifikation von zwei identen Alarmen. Achtung: Falls zwei oder mehr Alarme mit der selben Index Nummer ausgelöst werden, werden die späteren ignoriert.
 - needsAcknowledgement: boolean - mandatory - Antwortfunktion
 - startDate: string - optional - Das Startdatum für den Alarm, falls der Alarm in der Zukunft starten soll. Der Timestamp muss im UTC Format übertragen werden z.B. :`2017-01-27T14:49:52.000Z` 
 - duration: integer - conditional - Dauer der Antwortfunktion in Minuten
@@ -50,7 +51,6 @@ Ein Beispiel:
         "password" : "mySuperSecretPwd",
         "customerId" : "100027",
         "hideTriggerDetails" : false,
-        "indexNumber" : 1234,
         "alarmText" : "Das ist ein Testalarm",
         "type" : "alarm",
         "needsAcknowledgement" : true,
@@ -212,5 +212,3 @@ Ein Beispiel:
 - INVALID_TEMPLATE
 - NOT FOUND
 - UNKNOWN_ERROR
-
-
