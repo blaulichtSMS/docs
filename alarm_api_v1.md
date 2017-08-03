@@ -27,14 +27,14 @@ _**/api/alarm/v1/trigger**_
 
 Um einen Alarm zu triggern muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden.
 
-- username: string - mandatory - Benutzername
-- password: string - mandatory - Passwort
-- customerId: string - mandatory - Kundennummer
-- type: alarm | info - mandatory - Der Alarmtyp
+- username: string - verpflichtend - Benutzername
+- password: string - verpflichtend - Passwort
+- customerId: string - verpflichtend - Kundennummer
+- type: alarm | info - verpflichtend - Der Alarmtyp
 - hideTriggerDetails: boolean - optional - Alarmgeberdetails nicht mitsenden
 - alarmText: string - optional - Der Alarmtext
 - indexNumber: integer- optional - Die Index Nummer dient zur Identifikation von zwei identen Alarmen. Achtung: Falls zwei oder mehr Alarme mit der selben Index Nummer ausgelöst werden, werden die späteren ignoriert.
-- needsAcknowledgement: boolean - mandatory - Antwortfunktion
+- needsAcknowledgement: boolean - verpflichtend - Antwortfunktion
 - startDate: string - optional - Das Startdatum für den Alarm, falls der Alarm in der Zukunft starten soll. Der Timestamp muss im UTC Format übertragen werden z.B. :`2017-01-27T14:49:52.000Z` 
 - duration: integer - conditional - Dauer der Antwortfunktion in Minuten
 - recipientConfirmation: boolean - optional - SMS Empfangsbestätigung ein- bzw. ausschalten (kostenpflichtig)
@@ -81,10 +81,10 @@ _**/api/alarm/v1/query**_
 
 Um einen Alarm zu suchen muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden.
 
-- username: string - mandatory - Benutzername
-- password: string - mandatory - Passwort
-- customerId: string - mandatory - Kundennummer
-- alarmid: string - mandatory - Die AlarmId (wird beim Auslösen eines Alarms zurückgegeben)
+- username: string - verpflichtend - Benutzername
+- password: string - verpflichtend - Passwort
+- customerId: string - verpflichtend - Kundennummer
+- alarmid: string - verpflichtend - Die AlarmId (wird beim Auslösen eines Alarms zurückgegeben)
 
 Ein Beispiel:
 
@@ -111,9 +111,9 @@ _**/api/alarm/v1/list**_
 
 Um eine Liste von Alarmen zu erhalten muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden. Man erhält eine Liste von AlarmData Objekten. Es werden maximal 100 Alarme geliefert - sortiert nach Enddatum des Alarms.
 
-- username: string - mandatory - Benutzername
-- password: string - mandatory - Passwort
-- customerIds: list of string - mandatory - Liste von Kundennummern
+- username: string - verpflichtend - Benutzername
+- password: string - verpflichtend - Passwort
+- customerIds: list of string - verpflichtend - Liste von Kundennummern
 - startDate: date in iso format - optional - Startdatum der Suche (alle Alarme mit End-Datum danach werden geliefert)
 - endDate: date in iso format - optional - Enddatum der Suche (alle Alarme mit Start-Datum davor werden geliefert)
 

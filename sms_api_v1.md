@@ -13,7 +13,8 @@
 
 ##  SMS API
 
-Für die Verwendung dieser API muss die SMS Absendernummer in unserem System bei dem dazugehörigen "Automatisierten Alarmgeber" hinterlegt sein.
+Für die Verwendung dieser API für mehrere Kunden, muss die SMS Absendernummer in unserem System bei dem dazugehörigen "Automatisierten Alarmgeber" hinterlegt sein, nehmen Sie dazu bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) auf.
+Falls Sie nur Ihre Kundennummer Alarmierenwollen, reicht es, wenn Sie die Absendernummer als Alarmgeber unter "Konfiguration > Alarmgeber" selbst eintragen.
 
 ### Trigger Alarm
 
@@ -23,8 +24,8 @@ Der Alarmcode setzt sich aus verschiedenen Konfigurationen zusammen. Eine Konfig
 
 #### Alarmcode
 
-- **K**{{customerId}} - mandatory -  Kundennummer z.B. `K100027`
-- **G**{{groupId}} - mandatory - Alarmgruppe z.B. `G1`
+- **K**{{customerId}} - verpflichtend -  Kundennummer z.B. `K100027`
+- **G**{{groupId}} - verpflichtend - Alarmgruppe z.B. `G1`
 - **A**{{templateId}} - optional - Alarmvorlage z.B. `A1`
 - **Q**0 - optional - Falls vorhanden: Antwortfunktion ist aktiv
 - **I**0 - optional - Falls vorhanden: Alarm ist eine Info
