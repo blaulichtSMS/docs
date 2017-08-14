@@ -65,7 +65,7 @@ via REST:
         "type" : "alarm",
         "needsAcknowledgement" : true,
         "recipientConfirmation" : false,
-        "template" : A1,
+        "template" : "A1",
         "groupCodes" : ["G1", "G2"],
         "additionalMsisdns" : [],
         "coordinates" : {
