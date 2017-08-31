@@ -162,7 +162,7 @@ Folgende Fehler können typischerweise auftreten:
 - HTTP 403 Forbidden: Problem bei der Authentifizierung
 
 
-### Import Alarmteilnehmer - CSV
+### Import Gruppen - CSV
 _**/api/portal/v1/import/groups/csv/{{customerId}}**_
 
 Die CSV Schnittstelle funktioniert wie die JSON Schnittstelle oben - es gelten die gleichen Richtlinien hinsichtlich Pflichtfelder, Format und optionale Felder und es werden die gleichen Fehlercodes zurückgegeben.
