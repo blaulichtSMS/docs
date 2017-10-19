@@ -144,3 +144,12 @@ Ein Beispiel:
            "apiKey" : "23423ldjsakfjdsflj34343"
        }
     }
+
+# Einsatzmonitor Autologin
+
+Die `sessionId` kann auch dazu verwendet werden, um einen automatischen Login beim Einsatzmonitor zu erzeugen. Hierzu muss nur das Dashboard mit folgender URL gestartet werden:
+
+_**https://dashboard.blaulichtsms.net/#/login?token={{sessionId}}**_
+
+
+
