@@ -60,9 +60,12 @@ Um die Dashboard API zu verwenden, benötigen Sie die Zugangsdaten zu Ihrem Eins
 
 Für alle Entwickler bieten wir einen kostenfreien (limitierten) Testzugang an. Falls Sie Interresse haben, nehmen sie
  bitte [hier mit uns Kontakt auf](https://start2.blaulichtsms.net/de/contact). 
+ 
+## Community Projekte
+
+* HDMI-CEC Steuerung für den Einsatzmonitor https://github.com/stg93/blaulichtsms_einsatzmonitor_tv_controller
 
 ## Deprecation
-
 
 Wir unterstützen nur die API Felder, die in den API Beschreibungen definiert werden.
 
