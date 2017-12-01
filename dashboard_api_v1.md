@@ -120,6 +120,18 @@ Ein Beispiel:
         "msisdn" : "+4366412345678"
         "participation" : "yes", // eines von yes | no | uknown | pending
         "participationMessage" : "Komme 5 Minuten später",
+        "functions": [ ], // Liste von AlarmFunction Elementen (Funktionen / Qualifikationen)
+    }
+    
+#### AlarmFunction
+
+    {
+        "functionId": "123123789"
+        "name": "Atemschutzgeräteträger"
+        "order": 2
+        "shortForm": "AGT"
+        "backgroundHexColorCode": "#3164c2"
+        "foregroundHexColorCode" "#ffffff"
     }
 
 #### GeoLocation
