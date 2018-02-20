@@ -48,6 +48,13 @@ Um die Dashboard API zu verwenden, benötigen Sie die Zugangsdaten zu Ihrem Eins
 * API Beschreibung: [Import API](./import_api_v1.md)
 
 
+## safeREACH API
+
+> Auslösen von Szenarien.
+
+* API Beschreibung: [safeREACH API](./safereach_api_v1.md)
+
+
 ## Fragen & Probleme
 
 

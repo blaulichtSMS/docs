@@ -11,7 +11,7 @@
 Encoding ist immer UTF-8.
 
 ### Test Basis URL
-https://blaulicht-dev.alpspay.com/blaulicht
+https://api-staging.blaulichtsms.net/blaulicht
 
 ### Live Basis URL
 https://api.blaulichtsms.net/blaulicht

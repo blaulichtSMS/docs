@@ -6,6 +6,7 @@
 - V1.2: recipientConfirmation Parameter hinzugefügt
 - V1.3: List Alarm Endpunkt hinzugefügt
 - V1.4: Änderung des Alarm Data Element: Erweiterung der recipients, Deprecation der participants, Geolocation hinzugefügt (2017-01-19)
+- V1.5: Erweiterung der API um die indexNumber
 
 ## Allgemein
 
@@ -13,7 +14,7 @@
 Encoding ist immer UTF-8.
 
 ### Test Basis URL
-https://blaulicht-dev.alpspay.com/blaulicht
+https://api-staging.blaulichtsms.net/blaulicht
 
 ### Live Basis URL
 https://api.blaulichtsms.net/blaulicht
@@ -148,6 +149,7 @@ Im Erfolgsfall erhält man z.B. folgendes Resultat. Die möglichen Werte für **
 - geolocation: Siehe GeoLocation Object
 - recipients: Liste der Alarmteilnehmer - siehe AlarmRecipient Object
 - audioUrl: Url zum Abspielen des Audio-Alarms, falls ein solcher ausgelöst wurde
+- indexNumber: Die Index Nummer des Alarms
 
 
 Ein Beispiel:
@@ -164,7 +166,8 @@ Ein Beispiel:
         "usersAlertedCount" : 10,
         "geolocation" : { }, // see GeoLocation object
         "recipients" : [ ], // Liste von AlarmRecipient Elementen
-        "audioUrl" : null
+        "audioUrl" : null,
+        "indexNumber": null
     }
 
 #### AlarmGroup
