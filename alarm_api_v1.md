@@ -182,7 +182,8 @@ Ein Beispiel:
     {
         "id" : "2342343242342abcde32423423",
         "name" : "Martina Musterfrau",
-        "msisdn" : "+4366412345678"
+        "msisdn" : "+4366412345678",
+        "comment" : "FF Nusterwehr" // ein optionales Zusatzfeld
         "participation" : "yes", // eines von yes | no | uknown | pending
         "participationMessage" : "Komme 5 Minuten später",
         "functions": [ ], // Liste von AlarmFunction Elementen (Funktionen / Qualifikationen)
