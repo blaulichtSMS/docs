@@ -44,11 +44,11 @@ Im Alarmtext werden der `alarmText` und die `coordinates` übergeben.
 Falls Koordinaten übermittelt werden sollen, können diese in folgendem Format an einer beliebigen Stelle im Alarmtext stehen. 
 
 ```
-[xx.xxxx,yy.yyyy]
+[xx.xxxxxx,yy.yyyyyy]
 ```
 oder
 ```
-(xx.xxxx,yy.yyyy)
+(xx.xxxxxx,yy.yyyyyy)
 ```
 
 Die Koordniaten müssen in Längen- und Breitengraden koodiert sein. z.B. `(48.220778,16.3100209)` für Wien.
