@@ -68,6 +68,7 @@ Bei einer validen Session wird eine **HTTP 200 OK** Antwort im **json** Format m
     {
         "customerId" : "K123456",
         "customerName" : "FF Test",
+        "username" : "einsatzmonitor",
         "integrations" : [ ], // Liste an Integrationen
         "alarms" : [ ], // Liste von AlarmData Elementen
         "infos" : [ ] // List von AlarmData Elementen
