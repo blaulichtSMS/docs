@@ -66,7 +66,7 @@ Wenn die Session abgelaufen ist, erhält man eine **HTTP 401 Unauthorized** Antw
 Bei einer validen Session wird eine **HTTP 200 OK** Antwort im **json** Format mit folgendem Inhalt versendet:
 
     {
-        "customerId" : "K123456",
+        "customerId" : "123456",
         "customerName" : "FF Test",
         "username" : "einsatzmonitor",
         "integrations" : [ ], // Liste an Integrationen
