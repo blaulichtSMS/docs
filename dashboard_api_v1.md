@@ -25,7 +25,7 @@ Die Benutzerdaten hierfür sind die selben, die für den Login auf [https://dash
     {
         "username" : "myUser",
         "password" : "mySuperSecretPwd",
-        "customerId" : "K123456"
+        "customerId" : "123456"
     }
 
 Nach einem erfolgreichen Login erhält man die Session ID:
