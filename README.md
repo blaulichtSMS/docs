@@ -71,6 +71,7 @@ Für alle Entwickler bieten wir einen kostenfreien (limitierten) Testzugang an. 
 ## Community Projekte
 
 * HDMI-CEC Steuerung für den Einsatzmonitor https://github.com/stg93/blaulichtsms_einsatzmonitor_tv_controller
+* [Node-RED] Node für das Einspielen von blaulichtSMS Alarmen & Infos https://github.com/riederch/node-red-contrib-blaulicht-sms
 
 ## Deprecation
 
