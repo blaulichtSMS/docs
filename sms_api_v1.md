@@ -28,8 +28,8 @@ Der Alarmcode setzt sich aus verschiedenen Konfigurationen zusammen. Eine Konfig
 - **G**{{groupId}} - verpflichtend - Alarmgruppe z.B. `G1`
 - **A**{{templateId}} - optional - Alarmvorlage z.B. `A1`
 - **Q**0 - optional - Falls vorhanden: Antwortfunktion ist aktiv
-- **I**0 - optional - Falls vorhanden: Alarm ist eine Info
-- **Z**0 - optional - Falls vorhanden: Zustellbestätigung ist aktiv.
+- **I** - optional - Falls vorhanden: Alarm ist eine Info
+- **Z** - optional - Falls vorhanden: Zustellbestätigung ist aktiv.
 - **M**{{indexNumber}} - optional - Index Nummer einer Alarmierung. Die Index Nummer dient zur Identifikation von zwei identen Alarmen. Achtung: Falls zwei oder mehr Alarme mit der selben Index Nummer ausgelöst werden, werden die späteren ignoriert.
 - **T**{{additionalMsisdn}} - optional - Nummern die zusätzlich alarmiert werden sollen z.B. `T+4366412345678`
 
