@@ -104,6 +104,45 @@ Folgende Fehler können typischerweise auftreten:
 - HTTP 401 Unauthorized: Problem bei der Authentifizierung
 - HTTP 403 Forbidden: Problem bei der Authentifizierung
 
+### Suche eines ausgelösten Szenarios
+_**/api/alarm/v1/scenario/trigger**_
+
+Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL kann man 
+nach einem ausgelösten Szenario suchen.
+
+
+- username: string - Pflichtfeld - Benutzername
+- password: string - Pflichtfeld - Passwort
+- customerId: string - Pflichtfeld - Kundennummer
+- scenarioId: string - Pflichtfeld - Szenario Id, welches gesucht wird 
+
+Ein Beispiel:
+
+    {
+        "username" : "myUser",
+        "password" : "mySuperSecretPwd",
+        "customerId" : "100027",
+        "scenarioId" :  "123-ABC-asdfqwerasdf"
+        
+    }
+
+Im Erfolgsfall erhält man z.B. folgendes Resultat. Die möglichen Werte für **result** sind hier zu finden: https://github.com/blaulichtSMS/docs/blob/master/alarm_api_v1.md#ergebnis-codes
+
+    {
+        "result" : "OK",
+        "descirption": "Beschreibung",
+        "scenarioData": { ScenarioData Objekt }
+    }
+
+
+Im Fehlerfall wird ein HTTP Fehlercode geliefert, sowie in der Regel auch eine textuelle Beschreibung des Problems, um das debuggen zu erleichtern.
+
+Folgende Fehler können typischerweise auftreten:
+
+- HTTP 400 BAD Request: Datenvalidierung fehlgeschlagen
+- HTTP 401 Unauthorized: Problem bei der Authentifizierung
+- HTTP 403 Forbidden: Problem bei der Authentifizierung
+
 
 #### ScenarioConfigData
 - scenarioConfigId: Die ID einer Konfiguration
@@ -117,4 +156,28 @@ Ein Beispiel:
         "scenarioConfigId" : "32849abcdef23343",
         "customerId" : "100027",
         "name": "Szenario 1"
+    }
+
+
+#### ScenarioData
+- scenarioId: Die ID des Szenarios
+- authorId: Die ID des Autors
+- authorName: Der Name des Autors
+- usersAlertedCount: Die Summe der insgesamt alarmierten Personen
+- creationDate: Erstellungsdatum
+- startDate: Startdatum
+- endDate: Enddatum
+- alarms: Liste an [AlarmData Objekten](alarm_api_v1.md#alarmdata)
+
+Ein Beispiel:
+ 
+    {
+        "scenarioId": "123-ABC-asdfqwerasdf",
+        "authorId": "author1",
+        "authorName": "Max Mustermann",
+        "usersAlertedCount": 5,
+        "creationDate": "2018-12-13T14:56:53.016Z",
+        "startDate": "2018-12-13T14:56:53.016Z",
+        "endDate": null,
+        "alarms": [ AlarmData Objekte ]
     }
