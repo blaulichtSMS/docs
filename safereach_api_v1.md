@@ -2,6 +2,7 @@
 
 ## Version
 - V1.0: Erste Version (2017-02-19)
+- V1.1: Zusätzlicher Text hinzugefügt beim Auslösen hinzugefügt (2018-12-14)
 
 ## Allgemein
 
@@ -72,6 +73,7 @@ Szenarios auslösen.
 - customerId: string - Pflichtfeld - Kundennummer
 - scenarioConfigId: string - Pflichtfeld - Die ID der Konfiguration
 - type: ScenarioType - Pflichtfeld (Entweder `PRACTICE` oder `LIVE`)
+- additionalText: string - Optional - Optionaler Freitext
 
 Ein Beispiel:
 
@@ -80,7 +82,8 @@ Ein Beispiel:
         "password" : "mySuperSecretPwd",
         "customerId" : "100027",
         "scenarioConfigId" : "32849abcdef23343",
-        "type": "PRACTICE"
+        "type": "PRACTICE",
+        "additionalText": "Zusatzinfo vom User"
         
     }
 
