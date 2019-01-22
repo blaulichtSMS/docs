@@ -41,7 +41,9 @@ Im Alarmtext werden der `alarmText` und die `coordinates` übergeben.
 
 #### Koordinaten
 
-Falls Koordinaten übermittelt werden sollen, können diese in folgendem Format an einer beliebigen Stelle im Alarmtext stehen. 
+Falls Koordinaten übermittelt werden sollen, können diese in folgenden Formaten an einer beliebigen Stelle im Alarmtext stehen. Diese Koordianten werden aus der SMS extrahiert und zum Alarm gespeichert.
+
+**Via Längen- & Breitengrad (WGS84)**
 
 ```
 [xx.xxxxxx,yy.yyyyyy]
@@ -50,8 +52,15 @@ oder
 ```
 (xx.xxxxxx,yy.yyyyyy)
 ```
+Zum Beispiel `(48.220778,16.3100209)` für Wien.
 
-Die Koordniaten müssen in Längen- und Breitengraden koodiert sein. z.B. `(48.220778,16.3100209)` für Wien.
+**Via Rechts- & Hochwert**
+```
+XY: xxxxxxx.xx / yyyyyyy.yy
+```
+Zum Beispiel `XY:4468503.333/5333317.780` für München.
+
+Es gilt zu Beachten, dass sowohl der Rechtswert, als auch der Hochwert genau 7 Ziffern lang sein müssen. Optional kann mit einem Punkt getrennte Kommastellen einfügen. 
 
 #### Beispiele
 
