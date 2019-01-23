@@ -44,6 +44,7 @@ Um einen Alarm zu triggern muss man einen HTTP POST Request mit dem Header: `Con
 - groupCodes: list of strings - optional - Alarmgruppen z.b. `["G1"]`
 - additionalMsisdns: list of strings - optional - Nummern die zusätzlich alarmiert werden sollen z.B.: `["+4366412345678", "+4367612345678"]`
 - coordinates: object of Type Coordinate - optional - Alarmkoordinaten
+- geolocation: object of Type Geolocation - optional - Alternativ kann man statt den Koordinaten auch ein Geolocation Objekt mit einer Adresse übergeben. Diese wird anschließend in Koordinaten umgewandelt z.B.: `{"address": "Getreidemartk 11, 1060 Wien"}` 
 
 Ein Beispiel:
 
