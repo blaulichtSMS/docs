@@ -11,7 +11,6 @@ const GROUPS = ['G1'];
 const TEXT = 'Das ist ein test der API';
 
 $request_body = [
-    'alarmCode' => '1',
     'username' => USERNAME,
     'password' => PASSWORD,
     'hideTriggerDetails' => false,
