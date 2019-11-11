@@ -41,7 +41,7 @@ Um die Dashboard API zu verwenden, benötigen Sie die Zugangsdaten zu Ihrem Eins
 
 ## Import API
 
-> Import von Alarmteilnehmern via JSON oder csv.
+> Import von Alarmteilnehmern, Alarmgebern und Gruppen via JSON oder csv.
 > 
 > ACHTUNG: Diese API überschreibt alle vorhandenen Daten.
 
@@ -53,6 +53,17 @@ Um die Dashboard API zu verwenden, benötigen Sie die Zugangsdaten zu Ihrem Eins
 > Auslösen von Szenarien.
 
 * API Beschreibung: [safeREACH API](./safereach_api_v1.md)
+
+
+## safeREACH Import Export API
+
+> Import und Export von Alarmteilnehmern und Gruppen via JSON oder csv.
+> 
+> ACHTUNG: Diese API ermöglicht den Erweiteren Import und Export von Teilnehmern und Gruppen.
+> Teilnehmer können anhand von Fremdschlüssel (externalId) bearbeitet werden.
+
+* API Beschreibung: [safeREACH Import Export API (Englisch)](./import_export_api_v2.md)
+
 
 
 ## Fragen & Probleme
