@@ -4,6 +4,7 @@
 - v2.0: Initial Draft (2018-09-30)
 - v2.1: Small API adjustments and (2019-03-01)
 - v2.2: Add merge flag for import requests (2019-08-20)
+- v2.3: Rename `customerOrGroupId` to `customerId` in data objects (2020-03-05)
 
 ## General
 
@@ -42,7 +43,7 @@ The import API provides the following improvements compared to the [Import API V
 
 - id: string - mandatory - `<UUIDv4>` - for new records and for external id usage leave empty
 - externalId: string - optional - for id usage leave empty; mandatory for external id usage
-- customerOrGroupId: string - mandatory
+- customerId: string - mandatory
 - msisdn: string - mandatory - phone number with country code prefix in the following format: +4366412345678
 - givenname: string - mandatory - first name
 - surname: string - mandatory - last name
@@ -58,7 +59,7 @@ The import API provides the following improvements compared to the [Import API V
 
 - id: string - mandatory - `<UUIDv4>` - for new records or external id usage leave empty
 - externalId: string - optional - for new records or id usage leave empty
-- customerOrGroupId: string - mandatory
+- customerId: string - mandatory
 - groupId: string - mandatory - group Id - the groupId has to start with a `G` followed by an int between G0 and G999999999 - The groupId can't be changed once it was created - only the name can be updated
 - name: string - mandatory - name of the the group 
 
@@ -91,7 +92,7 @@ With a HTTP POST request with the header: `Content-Type: application/json` recip
         {
           "id": "<UUIDv4>",
           "externalId": "",  
-          "customerOrGroupId": "100027",
+          "customerId": "100027",
           "msisdn" : "+4366412345678",
           "givenname" : "Max",
           "surname" : "Mustermann",
@@ -109,7 +110,7 @@ With a HTTP POST request with the header: `Content-Type: application/json` recip
         {
           "id": "<UUIDv4>",
           "externalId": "",
-          "customerOrGroupId": "100027",
+          "customerId": "100027",
           "msisdn" : "+4367612345678",
           "givenname" : "Martina",
           "surname" : "Musterfrau",
@@ -173,7 +174,7 @@ The following columns have to be separated by `;`
 
 - id: string - mandatory - `<UUIDv4>` - for new records or external id usage leave empty
 - externalId: string - optional - for new records or id usage leave empty
-- customerOrGroupId: string - mandatory
+- customerId: string - mandatory
 - givenname: string - mandatory
 - surname: string - mandatory
 - msisdn: string - mandatory
@@ -189,7 +190,7 @@ After "comment" group participation is listed by `groupId`.
 #### example
 
 ```csv
-id;externalId;customerOrGroupId;givenname;surname;msisdn;email;comment;G1;G2;G3  
+id;externalId;customerId;givenname;surname;msisdn;email;comment;G1;G2;G3  
 <UUIDv4>;;100027;Max;Mustermann;+4366412345678;;;1;1;0  
 <UUIDv4>;;100027;Martina;Musterfrau;+4367612345678;martina.musterfrau@example.com;;0;0;0
 ```
@@ -294,13 +295,13 @@ The following columns need to be separated by `;`
 
 - id: string - mandatory - `<UUIDv4>` - for new records or external id usage leave empty
 - externalId: string - optional - for new records or id usage leave empty
-- customerOrGroupId
+- customerId
 - groupId
 - name
 
 #### example
 
-    id;exteranlId;customerOrGroupId;groupId;name
+    id;exteranlId;customerId;groupId;name
     <UUIDv4>;externalId;100027;G1;Sirenenalarm
     <UUIDv4>;externalId;100027;G2;Stiller Alar
     <UUIDv4>;externalId;100027;G3;Alle Kameraden
