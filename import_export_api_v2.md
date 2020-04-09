@@ -5,6 +5,7 @@
 - v2.1: Small API adjustments and (2019-03-01)
 - v2.2: Add merge flag for import requests (2019-08-20)
 - v2.3: Rename `customerOrGroupId` to `customerId` in data objects (2020-03-05)
+- v2.4: Add optional deleteOnlyExternal flag for import requests (2020-04-09)
 
 ## General
 
@@ -20,7 +21,7 @@ https://api.blaulichtsms.net/blaulicht
 ###  Usage
 
 The API extends the possibility for managing users and groups on the [safeREACH web platform](https://start.safereach.net).
-API requests are limited by the Fair Use Policy.  
+API requests are limited by the Fair Use Policy. 
 
 ### Authentication
 
@@ -34,8 +35,9 @@ The identification of a recipient / group is done via an UUID version 4, referen
 The import API provides the following improvements compared to the [Import API Version 1](import_api_v1.md).
 - recipient and group identification via an `externalId` (_VARCHAR(255)_)
 - a `dryRun` flag, which allows data-set comparison and pre-import validation
-- a `partial` flag, which allows partial imports (no deletion of unreferenced elements) 
+- a `partial` flag, which allows partial imports (no deletion of unreferenced elements)
 - a `merge` flag, which allows an initial merge with existing data (makes migration a lot easier)
+- a `deleteOnlyExternal` flag, which will only delete recipients with an externalId if `partial` is `false` and externalIds are used
 
 ### Objects
 
@@ -48,7 +50,7 @@ The import API provides the following improvements compared to the [Import API V
 - givenname: string - mandatory - first name
 - surname: string - mandatory - last name
 - email: string - optional - e-mail address
-- comment: string- optional - e.g. division in organisation or other addtional information
+- comment: string- optional - e.g. division in organisation or other additional information
 - groups: list of objects of the type `RecipientGroupParticipationData` - mandatory can be an empty list
 
 #### RecipientGroupParticipationData
@@ -61,7 +63,7 @@ The import API provides the following improvements compared to the [Import API V
 - externalId: string - optional - for new records or id usage leave empty
 - customerId: string - mandatory
 - groupId: string - mandatory - group Id - the groupId has to start with a `G` followed by an int between G0 and G999999999 - The groupId can't be changed once it was created - only the name can be updated
-- name: string - mandatory - name of the the group 
+- name: string - mandatory - name of the the group
 
 
 ### Import recipients - JSON
@@ -70,10 +72,11 @@ _**/api/public/v1/recipient/import**_
 
 With a HTTP POST request with the header: `Content-Type: application/json` recipients can be imported.
 
-- dryRun: boolean - optional - default `false` ; defines if only a data-set comparison should be made (true) or if data should also be imported (false)
-- useExternalId: boolean - optional - default `false` ; enables the use of externalIds or safeREACH UUIDs
-- partial: boolean - optional - default `false` ; defines if records missing in the import data should be deleted from the existing data (false)
-- merge: boolean - optional - default `false` ; defines if existing entries should be merged based on the recipients msisdn. The `externalId` is mandatory and will be added to the recipient. Current group assignment will not be overwritten. Also the comment will not be overwritten.
+- dryRun: boolean - optional - default `false`; defines if only a data-set comparison should be made (true) or if data should also be imported (false)
+- useExternalId: boolean - optional - default `false`; enables the use of externalIds or safeREACH UUIDs
+- partial: boolean - optional - default `false`; defines if records missing in the import data should be deleted from the existing data (false)
+- merge: boolean - optional - default `false`; defines if existing entries should be merged based on the recipients msisdn. The `externalId` is mandatory and will be added to the recipient. Current group assignment will not be overwritten. Also the comment will not be overwritten.
+- deleteOnlyExternal: boolean - optional - default `false`; defines if only recipients with an `externalId` should be considered for deletion
 - recipients: list of objects of the type `RecipientData` - recipients
 
 
@@ -91,7 +94,7 @@ With a HTTP POST request with the header: `Content-Type: application/json` recip
     "recipients" : [
         {
           "id": "<UUIDv4>",
-          "externalId": "",  
+          "externalId": "", 
           "customerId": "100027",
           "msisdn" : "+4366412345678",
           "givenname" : "Max",
@@ -104,7 +107,7 @@ With a HTTP POST request with the header: `Content-Type: application/json` recip
             },
             {
                "groupId": "G2"
-            }             
+            }            
           ]
         },
         {
@@ -148,7 +151,7 @@ The following errors can occur:
 - HTTP 400 BAD Request: malformed JSON request received
 - HTTP 401 Unauthorized: invalid credentials
 - HTTP 403 Forbidden: missing permissions
-- HTTP 409 Conflict: input data conflicting with current data set; see the description of the response for  more information 
+- HTTP 409 Conflict: input data conflicting with current data set; see the description of the response for  more information
 
 
 ### Import recipients - CSV
@@ -157,10 +160,11 @@ _**/api/public/v1/recipient/import**_
 
 The following query parameters can be set:
 
-- dryRun: boolean - optional - default `false` ; defines if only a data-set comparison should be made (true) or if data should also be imported (false)
-- useExternalId: boolean - optional - default `false` ; enables the use of externalIds or safeREACH UUIDs
-- partial: boolean - optional - default `false` ; defines if records missing in the import data should be deleted from the existing data (false)
-
+- dryRun: boolean - optional - default `false`
+- useExternalId: boolean - optional - default `false`
+- partial: boolean - optional - default `false`
+- merge: boolean - optional - default `false`
+- deleteOnlyExternal: boolean - optional - default `false`
 
 The following headers have to be set:
 
@@ -190,8 +194,8 @@ After "comment" group participation is listed by `groupId`.
 #### example
 
 ```csv
-id;externalId;customerId;givenname;surname;msisdn;email;comment;G1;G2;G3  
-<UUIDv4>;;100027;Max;Mustermann;+4366412345678;;;1;1;0  
+id;externalId;customerId;givenname;surname;msisdn;email;comment;G1;G2;G3 
+<UUIDv4>;;100027;Max;Mustermann;+4366412345678;;;1;1;0 
 <UUIDv4>;;100027;Martina;Musterfrau;+4367612345678;martina.musterfrau@example.com;;0;0;0
 ```
 
@@ -203,9 +207,9 @@ With a HTTP POST request with the header: `Content-Type: application/json` group
 - customerOrGroupId: string - mandatory - customerOrGroupId
 - username: string - mandatory - username
 - password: string - mandatory - password
-- dryRun: boolean - optional - default `false` ; defines if only a data-set comparison should be made (true) or if data should also be imported (false)
-- useExternalId: boolean - optional - default `false` ; enables the use of externalIds or safeREACH UUIDs
-- partial: boolean - optional - default `false` ; defines if records missing in the import data should be deleted from the existing data (false)
+- dryRun: boolean - optional - default `false`
+- useExternalId: boolean - optional - default `false`
+- partial: boolean - optional - default `false`
 - groups: List of objects of type GroupData - groups
 
 
@@ -219,11 +223,11 @@ With a HTTP POST request with the header: `Content-Type: application/json` group
     "dryRun": true,
     "externalId": false,
     "partial": false,
-    "merge": false,        
+    "merge": false,       
     "groups": [
         {
             "id": "<UUIDv4>",
-            "externalId": "",  
+            "externalId": "", 
             "customerId": "100027",
             "groupId": "G1",
             "name": "All employees"
@@ -237,7 +241,7 @@ With a HTTP POST request with the header: `Content-Type: application/json` group
         },
         {
           "id": "<UUIDv4>",
-          "externalId": "",  
+          "externalId": "", 
           "customerId": "100027",
           "groupId": "G3",
           "name": "IT"
@@ -272,7 +276,7 @@ Following errors can occur:
 - HTTP 400 BAD Request: malformed JSON request received
 - HTTP 401 Unauthorized: invalid credentials
 - HTTP 403 Forbidden: missing permissions
-- HTTP 409 Conflict: input data conflicting with current data set; see the description of the response for  more information 
+- HTTP 409 Conflict: input data conflicting with current data set; see the description of the response for  more information
 
 
 ### Import groups - CSV
@@ -280,9 +284,11 @@ _**/api/public/v1/group/import**_
 
 The following query parameters can be set:
 
-- dryRun: boolean - boolean - optional - default `false` ; defines if only a data-set comparison should be made (true) or if data should also be imported (false)
-- useExternalId: boolean - optional - default `false` ; enables the use of externalIds or safeREACH UUIDs
-- partial: boolean - optional - default `false` ; defines if records missing in the import data should be deleted from the existing data (false)
+- dryRun: boolean - optional - default `false`
+- useExternalId: boolean - optional - default `false`
+- partial: boolean - optional - default `false`
+- merge: boolean - optional - default `false`
+- deleteOnlyExternal: boolean - optional - default `false`
 
 
 The following headers have to be set:
@@ -312,8 +318,8 @@ The following columns need to be separated by `;`
 
 _**/api/public/v1/group/{{customerOrGroupId}}/export**_
 
- or 
-
+ or
+ 
 _**/api/public/v1/recipient/{{customerOrGroupId}}/export**_
 
 
@@ -340,7 +346,7 @@ HTTP 200 OK
 }
 ```
 
-or 
+or
 
 ```json
 {
