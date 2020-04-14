@@ -5,7 +5,8 @@
 - v2.1: Small API adjustments and (2019-03-01)
 - v2.2: Add merge flag for import requests (2019-08-20)
 - v2.3: Rename `customerOrGroupId` to `customerId` in data objects (2020-03-05)
-- v2.4: Add optional deleteOnlyExternal flag for import requests (2020-04-09)
+- v2.4: Add optional `deleteOnlyExternal` flag for import requests (2020-04-09)
+- v2.5: Fix typo: `useExternalId` should be named `externalId` (2020-04-14)
 
 ## General
 
@@ -73,7 +74,7 @@ _**/api/public/v1/recipient/import**_
 With a HTTP POST request with the header: `Content-Type: application/json` recipients can be imported.
 
 - dryRun: boolean - optional - default `false`; defines if only a data-set comparison should be made (true) or if data should also be imported (false)
-- useExternalId: boolean - optional - default `false`; enables the use of externalIds or safeREACH UUIDs
+- externalId: boolean - optional - default `false`; enables the use of externalIds or safeREACH UUIDs
 - partial: boolean - optional - default `false`; defines if records missing in the import data should be deleted from the existing data (false)
 - merge: boolean - optional - default `false`; defines if existing entries should be merged based on the recipients msisdn. The `externalId` is mandatory and will be added to the recipient. Current group assignment will not be overwritten. Also the comment will not be overwritten.
 - deleteOnlyExternal: boolean - optional - default `false`; defines if only recipients with an `externalId` should be considered for deletion
@@ -161,7 +162,7 @@ _**/api/public/v1/recipient/import**_
 The following query parameters can be set:
 
 - dryRun: boolean - optional - default `false`
-- useExternalId: boolean - optional - default `false`
+- externalId: boolean - optional - default `false`
 - partial: boolean - optional - default `false`
 - merge: boolean - optional - default `false`
 - deleteOnlyExternal: boolean - optional - default `false`
@@ -208,7 +209,7 @@ With a HTTP POST request with the header: `Content-Type: application/json` group
 - username: string - mandatory - username
 - password: string - mandatory - password
 - dryRun: boolean - optional - default `false`
-- useExternalId: boolean - optional - default `false`
+- externalId: boolean - optional - default `false`
 - partial: boolean - optional - default `false`
 - groups: List of objects of type GroupData - groups
 
@@ -285,7 +286,7 @@ _**/api/public/v1/group/import**_
 The following query parameters can be set:
 
 - dryRun: boolean - optional - default `false`
-- useExternalId: boolean - optional - default `false`
+- externalId: boolean - optional - default `false`
 - partial: boolean - optional - default `false`
 - merge: boolean - optional - default `false`
 - deleteOnlyExternal: boolean - optional - default `false`
@@ -319,7 +320,7 @@ The following columns need to be separated by `;`
 _**/api/public/v1/group/{{customerOrGroupId}}/export**_
 
  or
- 
+
 _**/api/public/v1/recipient/{{customerOrGroupId}}/export**_
 
 
