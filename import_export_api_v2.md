@@ -76,7 +76,7 @@ With a HTTP POST request with the header: `Content-Type: application/json` recip
 - dryRun: boolean - optional - default `false`; defines if only a data-set comparison should be made (true) or if data should also be imported (false)
 - externalId: boolean - optional - default `false`; enables the use of externalIds or safeREACH UUIDs
 - partial: boolean - optional - default `false`; defines if records missing in the import data should be deleted from the existing data (false)
-- merge: boolean - optional - default `false`; defines if existing entries should be merged based on the recipients msisdn. The `externalId` is mandatory and will be added to the recipient. Current group assignment will not be overwritten. Also the comment will not be overwritten.
+- merge: boolean - optional - default `false`; defines if existing entries should be merged based on the recipients msisdn. The `externalId` is mandatory and will be added to the recipient. Current group assignment will not be deleted, but can be merged with new groups. Also the comment will not be overwritten.
 - deleteOnlyExternal: boolean - optional - default `false`; defines if only recipients with an `externalId` should be considered for deletion
 - recipients: list of objects of the type `RecipientData` - recipients
 
