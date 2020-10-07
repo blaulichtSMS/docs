@@ -105,7 +105,7 @@ Folgende Fehler können typischerweise auftreten:
 - HTTP 403 Forbidden: Problem bei der Authentifizierung
 
 ### Suche eines ausgelösten Szenarios
-_**/api/alarm/v1/scenario/trigger**_
+_**/api/alarm/v1/scenario/query**_
 
 Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL kann man 
 nach einem ausgelösten Szenario suchen.
