@@ -50,7 +50,7 @@ Um die Dashboard API zu verwenden, benötigen Sie die Zugangsdaten zu Ihrem Eins
 
 ## safeREACH API
 
-> Auslösen von Szenarien.
+> Auslösen und Abfragen von Szenarien.
 
 * API Beschreibung: [safeREACH API](./safereach_api_v1.md)
 
