@@ -149,7 +149,7 @@ Im Erfolgsfall erhält man z.B. folgendes Resultat. Die möglichen Werte für **
 - usersAlertedCount: Anzahl der alarmierten Personen
 - geolocation: Siehe GeoLocation Object
 - recipients: Liste der Alarmteilnehmer - siehe AlarmRecipient Object
-- audioUrl: Url zum Abspielen des Audio-Alarms, falls ein solcher ausgelöst wurde
+- audioUrl: Url zum Abspielen des Audio-Alarms, falls ein solcher ausgelöst wurde (nicht unterstützt)
 - indexNumber: Die Index Nummer des Alarms
 
 
