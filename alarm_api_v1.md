@@ -1,59 +1,59 @@
-# BlaulichtSMS Alarm API
+# blaulichtSMS Alarm API
 
 ## Version
-- V1.0: Erste Version (2016-08-12)
+- V1.0: First Version (2016-08-12)
 - V1.1: Alarm Query Endpoint
-- V1.2: recipientConfirmation Parameter hinzugefügt
-- V1.3: List Alarm Endpunkt hinzugefügt
-- V1.4: Änderung des Alarm Data Element: Erweiterung der recipients, Deprecation der participants, Geolocation hinzugefügt (2017-01-19)
-- V1.5: Erweiterung der API um die indexNumber
+- V1.2: recipientConfirmation parameter added
+- V1.3: List Alarm end point added
+- V1.4: Change of Alarm Data Element: extension of recipients, deprecation of participants, Geolocation added (2017-01-19)
+- V1.5: extended the API by indexNumber
 
-## Allgemein
+## General
 
 ### Encoding
-Encoding ist immer UTF-8.
+Encoding shall be UTF-8.
 
-### Test Basis URL
+### Test Base URL
 https://api-staging.blaulichtsms.net/blaulicht
 
-### Live Basis URL
+### Live Base URL
 https://api.blaulichtsms.net/blaulicht
 
 ##  Alarm API
 
-Für die Verwendung dieser API muss man als "Automatisierter Alarmgeber" im System hinterlegt sein und erhält einen Benutzernamen und Passwort.
+In order to be able to use this API, an "automatic alarm trigger" with username and password must be configured for the relevant customerId(s).
 
 ### Trigger Alarm
 _**/api/alarm/v1/trigger**_
 
-Um einen Alarm zu triggern muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden.
+To trigger an alarm, send an HTTP POST REQUEST with header `Content-Type: application/json` to the above URL.
 
-- username: string - verpflichtend - Benutzername
-- password: string - verpflichtend - Passwort
-- customerId: string - verpflichtend - Kundennummer
-- type: alarm | info - verpflichtend - Der Alarmtyp
-- hideTriggerDetails: boolean - optional - Alarmgeberdetails nicht mitsenden
-- alarmText: string - optional - Der Alarmtext
-- indexNumber: integer- optional - Die Index Nummer dient zur Identifikation von zwei identen Alarmen. Achtung: Falls zwei oder mehr Alarme mit der selben Index Nummer ausgelöst werden, werden die späteren ignoriert.
-- needsAcknowledgement: boolean - verpflichtend - Antwortfunktion
-- startDate: string - optional - Das Startdatum für den Alarm, falls der Alarm in der Zukunft starten soll. Der Timestamp muss im UTC Format übertragen werden z.B. :`"2017-01-27T14:49:52.000Z"` 
-- duration: integer - conditional - Dauer der Antwortfunktion in Minuten
-- recipientConfirmation: boolean - optional - SMS Empfangsbestätigung ein- bzw. ausschalten (kostenpflichtig)
-- recipientConfirmationTarget: string - optional - Empfänger für Report zu Empfangsbestätigungen
-- template: string - optional - Alarmtextcode z.b. `"A1"`
-- groupCodes: list of strings - optional - Alarmgruppen z.b. `["G1"]`
-- additionalMsisdns: list of strings - optional - Nummern die zusätzlich alarmiert werden sollen z.B.: `["+4366412345678", "+4367612345678"]`
-- coordinates: object of Type Coordinate - optional - Alarmkoordinaten
-- geolocation: object of Type Geolocation - optional - Alternativ kann man statt den Koordinaten auch ein Geolocation Objekt mit einer Adresse übergeben. Diese wird anschließend in Koordinaten umgewandelt z.B.: `{"address": "Getreidemartk 11, 1060 Wien"}` 
+- username: string - mandatory - username
+- password: string - mandatory - password
+- customerId: string - mandatory - customer ID
+- type: alarm | info - mandatory - event type
+- hideTriggerDetails: boolean - optional - do not send details of alarm trigger
+- alarmText: string - optional - content of alarm
+- indexNumber: integer- optional - The index number serves to distinguish different alarms. A second alarm with the same index number will be ignored.
+- needsAcknowledgement: boolean - mandatory - reply function
+- startDate: string - optional - The date of an alarm in case it is to be triggered in the future. The format shall be UTC e.g. :`"2017-01-27T14:49:52.000Z"` 
+- duration: integer - conditional - duration for which the reply function is enabled
+- recipientConfirmation: boolean - optional - turn on/off confirmation that SMS was received (charges apply)
+- recipientConfirmationTarget: string - optional - msisdn of recipient of SMS confirmation
+- template: string - optional - Alarm text code e.g. `"A1"`
+- groupCodes: list of strings - optional - Alarm group(s) e.g. `["G1"]`
+- additionalMsisdns: list of strings - optional - additional msidns to be alerted e.g.: `["+4366412345678", "+4367612345678"]`
+- coordinates: object of Type Coordinate - optional - coordinated of location of alarm
+- geolocation: object of Type Geolocation - optional - instead of coordinates, a Geolocation object containing an address may also be provided. This address will then  be converted to coordinates e.g.: `{"address": "Getreidemartk 11, 1060 Wien"}` 
 
-Ein Beispiel:
+An example:
 
     {
         "username" : "myUser",
         "password" : "mySuperSecretPwd",
         "customerId" : "100027",
         "hideTriggerDetails" : false,
-        "alarmText" : "Das ist ein Testalarm",
+        "alarmText" : "This is a test",
         "type" : "alarm",
         "needsAcknowledgement" : true,
         "duration" : 60,
@@ -67,28 +67,29 @@ Ein Beispiel:
         }
     }
 
-Im Erfolgsfall erhält man z.B. folgendes Resultat. Die möglichen Werte für **result** sind weiter unten angegeben. Im Fehlerfall ist dem Feld **description** eine Beschreibung des Fehlers zu entnehmen.
+The following is an exapmple of a successful API call.
+A list of all possible values of **result** is provided further down. In case of an error the field **description** contains a description of the error.
 
     {
         "result" : "OK",
         "alarmId" : "dakldjsfal-2343232-afsdaddfa-234",
         "customerId" : 100027,
         "description" : null
-        "alarmData" : { siehe Beschreibung AlarmData Object }
+        "alarmData" : { see description AlarmData Object }
     }
 
 
 ### QUERY ALARM
 _**/api/alarm/v1/query**_
 
-Um einen Alarm zu suchen muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden.
+To search for an alarm, send an HTTP POST Request with header `Content-Type: application/json` to the URL mentioned above.
 
-- username: string - verpflichtend - Benutzername
-- password: string - verpflichtend - Passwort
-- customerId: string - verpflichtend - Kundennummer
-- alarmid: string - verpflichtend - Die AlarmId (wird beim Auslösen eines Alarms zurückgegeben)
+- username: string - mandatory - username
+- password: string - mandatory - password
+- customerId: string - mandatory - customer ID
+- alarmid: string - mandatory - AlarmId (is returned upon triggering an alarm)
 
-Ein Beispiel:
+An example:
 
     {
         "username" : "myUser",
@@ -97,27 +98,28 @@ Ein Beispiel:
         "alarmId" : "dakldjsfal-2343232-afsdaddfa-234"
     }
 
-Im Erfolgsfall erhält man z.B. folgendes Resultat. Die möglichen Werte für **result** sind weiter unten angegeben. Im Fehlerfall ist dem Feld **description** eine Beschreibung des Fehlers zu entnehmen.
+The following is an exapmple of a successful API call.
+A list of all possible values of **result** is provided further down. In case of an error the field **description** contains a description of the error.
 
     {
         "result" : "OK",
         "alarmId" : "dakldjsfal-2343232-afsdaddfa-234",
         "customerId" : 100027,
         "description" : "ok",
-        "alarmData" :  { siehe Beschreibung AlarmData Object }
+        "alarmData" :  { see description AlarmData object }
     }
 
 
 ### LIST ALARM
 _**/api/alarm/v1/list**_
 
-Um eine Liste von Alarmen zu erhalten muss man einen HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL absenden. Man erhält eine Liste von AlarmData Objekten. Es werden maximal 100 Alarme geliefert - sortiert nach Enddatum des Alarms.
+To get a list of alarms, send an HTTP POST Request with header `Content-Type: application/json` to the URL mentioned above. You will receive a list of AlarmData objects. Only 100 alarms will be returned, sorted by the end date of the alarm.
 
-- username: string - verpflichtend - Benutzername
-- password: string - verpflichtend - Passwort
-- customerIds: list of string - verpflichtend - Liste von Kundennummern
-- startDate: date in iso format - optional - Startdatum der Suche (alle Alarme mit End-Datum danach werden geliefert)
-- endDate: date in iso format - optional - Enddatum der Suche (alle Alarme mit Start-Datum davor werden geliefert)
+- username: string - mandatory - username
+- password: string - mandatory - password
+- customerIds: list of string - mandatory - list of customer IDs
+- startDate: date in iso format - optional - start date for search (all alarms with later end date will be returned)
+- endDate: date in iso format - optional - end date for search (all alarms with prior start date will be returned)
 
 Ein Beispiel:
 
@@ -129,44 +131,45 @@ Ein Beispiel:
         "endDate" : "2016-01-01T17:30:00.000Z"
     }
 
-Im Erfolgsfall erhält man z.B. folgendes Resultat. Die möglichen Werte für **result** sind weiter unten angegeben. Im Fehlerfall ist dem Feld **description** eine Beschreibung des Fehlers zu entnehmen.
+The following is an exapmple of a successful API call.
+A list of all possible values of **result** is provided further down. In case of an error the field **description** contains a description of the error.
 
     {
         "result" : "OK",
         "description" : "ok",
-        "alarms" :  [{ siehe Beschreibung AlarmData Object }]
+        "alarms" :  [{ see description AlarmData object }]
     }
 
 #### AlarmData
-- customerId: Die Kundennummer zu der dieser Alarm gehört
-- alarmId: Der eindeutige Identifier des Alarms
-- alarmGroups: Liste der Alarmgruppen Elemente (siehe AlarmGroup Object)
-- alarmDate : Zeitpunkt der Alarmierung
-- endDate: Ende der Antwortfunktion (falls aktiviert)
-- authorName: Name des Alarmgebers der den Alarm ausgelöst hat
-- alarmText: Der Alarmierungstext
-- needsAcknowledgement: Ob die Antwortfunktion aktiviert ist
-- usersAlertedCount: Anzahl der alarmierten Personen
-- geolocation: Siehe GeoLocation Object
-- recipients: Liste der Alarmteilnehmer - siehe AlarmRecipient Object
-- audioUrl: Url zum Abspielen des Audio-Alarms, falls ein solcher ausgelöst wurde
-- indexNumber: Die Index Nummer des Alarms
+- customerId: Customer ID belonging to this alarm
+- alarmId: unique identifier of the alarm
+- alarmGroups: list of alarm group elements (see AlarmGroup object)
+- alarmDate : time of alert
+- endDate: end of reply function window (if activated)
+- authorName: name of the alarm trigger that has triggered the alarm
+- alarmText: the alarm text
+- needsAcknowledgement: reply function active/inactive
+- usersAlertedCount: nubmer of participants alerted
+- geolocation: see GeoLocation object
+- recipients: list of participants - see AlarmRecipient object
+- audioUrl: Url of audio alarm, if applicable
+- indexNumber: index number of the alarm
 
 
-Ein Beispiel:
+An example:
 
     {
         "customerId" : "100027",
         "alarmId" : "32849abcdef23343",
-        "alarmGroups" : [ ], // Liste von AlarmGroup Elementen
-        "alarmDate"  : "2016-01-01T17:30:21.345Z", // UTC Datum
-        "endDate"  : "2016-01-01T17:30:21.345Z", // UTC Datum
-        "authorName" : "Max Mustermann",
-        "alarmText" : "Das ist ein Probealarm",
+        "alarmGroups" : [ ], // list of AlarmGroup elements
+        "alarmDate"  : "2016-01-01T17:30:21.345Z", // UTC date
+        "endDate"  : "2016-01-01T17:30:21.345Z", // UTC date
+        "authorName" : "John Doe",
+        "alarmText" : "This is a test",
         "needsAcknowledgement" : true,
         "usersAlertedCount" : 10,
         "geolocation" : { }, // see GeoLocation object
-        "recipients" : [ ], // Liste von AlarmRecipient Elementen
+        "recipients" : [ ], // list of AlarmRecipient elements
         "audioUrl" : null,
         "indexNumber": null
     }
@@ -175,28 +178,28 @@ Ein Beispiel:
 
     {
         "groupId" : "G1",
-        "groupName" : "Alle Einsatzkräfte"
+        "groupName" : "whole team"
     }
 
 #### AlarmRecipient
 
     {
         "id" : "2342343242342abcde32423423",
-        "name" : "Martina Musterfrau",
+        "name" : "Jeanny Doe",
         "msisdn" : "+4366412345678",
-        "comment" : "FF Nusterwehr" // ein optionales Zusatzfeld
-        "participation" : "yes", // eines von yes | no | uknown | pending
-        "participationMessage" : "Komme 5 Minuten später",
-        "functions": [ ], // Liste von AlarmFunction Elementen (Funktionen / Qualifikationen)
+        "comment" : "Fire Brigade ABC" // optional
+        "participation" : "yes", // yes | no | uknown | pending
+        "participationMessage" : "Coming in 5 minutes",
+        "functions": [ ], // list of AlarmFunction Elementen (functions / qualifications)
     }
     
 #### AlarmFunction
 
     {
         "functionId": "123123789"
-        "name": "Atemschutzgeräteträger"
+        "name": "respiratory equipment carriers"
         "order": 2
-        "shortForm": "AGT"
+        "shortForm": "REC"
         "backgroundHexColorCode": "#3164c2"
         "foregroundHexColorCode" "#ffffff"
     }
@@ -208,13 +211,13 @@ Ein Beispiel:
             "lat" : 17.34334,
             "lon" : 23.32343
         },
-        "positionSetByAuthor" : true, // Wenn die Koordinaten durch den Autor gesetzt wurden
-        "radius" : 10, // Radius in m (Kann auch null sein)
-        "distance" : 10, // Distanz in m (Kann auch null sein)
-        "address" : "Musterstraße 1, 1010 Wien" // Adresse im Textformat (Kann auch null sein)
+        "positionSetByAuthor" : true, // if coordinates set by author
+        "radius" : 10, // radius in m (may be null)
+        "distance" : 10, // distance in m (may be null)
+        "address" : "High Street 1, 1234 Metropolis" // textual address (may be null)
     }
 
-#### Ergebnis Codes
+#### Return Codes
 - OK
 - MISSING_INPUT_DATA
 - MISSING_CUSTOMER_ID
