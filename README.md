@@ -38,14 +38,9 @@ Um die Dashboard API zu verwenden, benötigen Sie die Zugangsdaten zu Ihrem Eins
 
 * API Beschreibung: [Import API](./import_api_v1.md)
 
-## safeREACH API
-
-**All safeREACH APIs moved to a separate repository: [safeREACH API](https://github.com/safeREACH/docs)**
-
 ## Fragen & Probleme
 
-* Bei technischen Fragen erstellen Sie bitte ein Issue [hier](https://github.com/blaulichtSMS/docs/issues/new)
-* Bei administrativen Fragen nehmen Sie bitte [hier mit uns Kontakt auf](https://blaulichtsms.net/support/#kontaktformular)
+* Bei Fragen nehmen Sie bitte [hier mit uns Kontakt auf](https://blaulichtsms.net/support/#kontaktformular)
 
 ### Testzugang
 
