@@ -40,7 +40,7 @@ The alarm code consists of the following parts. You must at least provide a cust
 You can provide the `alarmText` and `coordinates` (location of incident).
 
 
-#### Koordinaten
+#### Coordinates
 
 Coordinates may occur anywhere within the alarm text. They will be parsed and added to the alarm. It is important that coordinates have the following format:
 
@@ -63,15 +63,15 @@ e.g. `XY:4468503.333/5333317.780` for Munich.
 
 Please note that the easting as well as the northing must consist of 7 digits. The decimal point and everything behind it are optional.
 
-#### Beispiele
+#### Examples
 
-##### Alamierung der Gruppe 1 und 2 des Kunden 100027 mit Koordinaten
+##### Alerting groups 1 and 2 of customer 100027 with coordinates
 
 via REST:
 ```
     {
         "customerId" : "100027",
-        "alarmText" : "Das ist ein Testalarm",
+        "alarmText" : "This is a test",
         "type" : "alarm",
         "needsAcknowledgement" : true,
         "recipientConfirmation" : false,
@@ -87,17 +87,17 @@ via REST:
 
 via SMS: 
 ```
-K100027G1G2A1Q0:Das ist ein Testalarm(48.205587,16.342917)
+K100027G1G2A1Q0:This is a test(48.205587,16.342917)
 ```
 
-##### Alamierung von mehreren zusätzlichen Alarmteilnehmern
+##### Alerting additional recipients
 
 
 via REST:
 ```
     {
         "customerId" : "100027",
-        "alarmText" : "Das ist ein Testalarm",
+        "alarmText" : "This is a test",
         "type" : "alarm",
         "needsAcknowledgement" : true,
         "recipientConfirmation" : false,
@@ -108,5 +108,5 @@ via REST:
 
 via SMS: 
 ```
-K100027G1Q0T+4366412345678T+4367612345678:Das ist ein Testalarm
+K100027G1Q0T+4366412345678T+4367612345678:This is a test
 ```
