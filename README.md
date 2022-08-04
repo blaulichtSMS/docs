@@ -18,7 +18,7 @@ Please contact us if you would like to use an automatic alarm trigger: [contact]
 * API description: [SMS API](./sms_api_v1.md)
 * Frequently asked questions: [FAQ SMS API](https://github.com/blaulichtSMS/docs/issues?q=label:sms-api%20label:question)
 
-Please contact us if you would like to use an SMS alarm trigger [Kontakt](https://blaulichtsms.net/support/#kontaktformular) auf.
+Please contact us if you would like to use an SMS alarm trigger: [contact](https://blaulichtsms.net/support/#kontaktformular)
 
 ## Dashboard API
 
