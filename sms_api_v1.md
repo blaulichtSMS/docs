@@ -1,31 +1,32 @@
-# BlaulichtSMS SMS API
+# blaulichtSMS SMS API
 
 ## Version
-- V1.0: Erste Version (2017-07-24)
+- V1.0: first version (2017-07-24)
 
-## Allgemein
+## General
 
-### Zielrufnummern:
+### Target number:
 
-**Österreich:** +43 (0) 82822100
+**Austria:** +43 (0) 82822100
 
-**Deutschland:** +49 (0) 1771783998
+**Germany:** +49 (0) 1771783998
 
 ##  SMS API
 
-Für die Verwendung dieser API für mehrere Kunden, muss die SMS Absendernummer in unserem System bei dem dazugehörigen "Automatisierten Alarmgeber" hinterlegt sein, nehmen Sie dazu bitte mit uns [Kontakt](https://start2.blaulichtsms.net/de/contact) auf.
-Falls Sie nur Ihre Kundennummer Alarmieren wollen, reicht es, wenn Sie die Absendernummer als Alarmgeber unter "Konfiguration > Alarmgeber" selbst eintragen.
+If you want to be able to alert multiple customer IDs, your sender number must be assigned to an "automatic alarm trigger". Please contact us so we can provide you with an alarm trigger.
+If you only want to alert your own customer ID, it is sufficient to create a manual alarm trigger on the web paltform (start.blaulichtsms.net) in section "Config" > "Alarm Trigger"
 
-### Trigger Alarm
+### Trigger alarm
 
-Eine Alarmierung über SMS besteht aus zwei Teilen, die mittels `:` getrennt sind. Der Teil vor dem ersten `:` ist der **Alarmcode** und der folgende Teil (hinter dem erstem `:`) ist der **Alarmtext**.
- 
-Der Alarmcode setzt sich aus verschiedenen Konfigurationen zusammen. Eine Konfiguration besteht immer aus einem Buchstaben und einer Zahl.
+An SMS triggering an alert consists of two parts, separated by a colon `:`.
+To the left of the colon there is the **Alarm code**, to the right there is the payload (the **Alarm text**)
 
-#### Alarmcode
+#### Alarm code
 
-- **K**{{customerId}} - verpflichtend -  Kundennummer z.B. `K100027`
-- **G**{{groupId}} - verpflichtend - Alarmgruppe z.B. `G1`
+The alarm code consists of the following parts. You must at least provide a customer ID and a groups, the other parts are optional. Every code must begin with a "K".
+
+- **K**{{customerId}} - mandatory -  customer ID e.g. `K100027`
+- **G**{{groupId}} - mandatory - alarm group e.g. `G1`
 - **A**{{templateId}} - optional - Alarmvorlage z.B. `A1`
 - **Q**0 - optional - Falls vorhanden: Antwortfunktion ist aktiv
 - **I** - optional - Falls vorhanden: Alarm ist eine Info
@@ -34,7 +35,7 @@ Der Alarmcode setzt sich aus verschiedenen Konfigurationen zusammen. Eine Konfig
 - **T**{{additionalMsisdn}} - optional - Nummern die zusätzlich alarmiert werden sollen z.B. `T+4366412345678`
 
 
-#### Alarmtext
+#### Alarm text
 
 Im Alarmtext werden der `alarmText` und die `coordinates` übergeben.
 
