@@ -109,18 +109,18 @@ An example:
 
     {
         "groupId" : "G1",
-        "groupName" : "Alle Einsatzkräfte"
+        "groupName" : "whole fire department"
     }
 
 #### AlarmRecipient
 
     {
         "id" : "2342343242342abcde32423423",
-        "name" : "Martina Musterfrau",
+        "name" : "Jenny Jobber",
         "msisdn" : "+4366412345678"
-        "participation" : "yes", // eines von yes | no | uknown | pending
-        "participationMessage" : "Komme 5 Minuten später",
-        "functions": [ ], // Liste von AlarmFunction Elementen (Funktionen / Qualifikationen)
+        "participation" : "yes", // yes | no | uknown | pending
+        "participationMessage" : "arriving in 5 minutes",
+        "functions": [ ], // list of AlarmFunction elements (functions / qualifications)
     }
     
 #### AlarmFunction
@@ -141,10 +141,10 @@ An example:
             "lat" : 17.34334,
             "lon" : 23.32343
         },
-        "positionSetByAuthor" : true, // Wenn die Koordinaten durch den Autor gesetzt wurden
-        "radius" : 10, // Radius in m (Kann auch null sein)
-        "distance" : 10, // Distanz in m (Kann auch null sein)
-        "address" : "Musterstraße 1, 1010 Wien" // Adresse im Textformat (Kann auch null sein)
+        "positionSetByAuthor" : true, // true if set by trigger
+        "radius" : 10, // radius in m (may be null)
+        "distance" : 10, // distance in m (may be null)
+        "address" : "High Street 99, 1234 Back-of-beyond" // address as test (may be null)
     }
 
 
@@ -159,7 +159,7 @@ An example:
 
 # Dashboard automatic login
 
-Die `sessionId` kann auch dazu verwendet werden, um einen automatischen Login beim Einsatzmonitor zu erzeugen. Hierzu muss nur das Dashboard mit folgender URL gestartet werden:
+The `sessionId` may also be used to create an automatic login to the dashboard. Therefore, the dashboard must be accessed using the following URL:
 
 _**https://dashboard.blaulichtsms.net/#/login?token={{sessionId}}**_
 
