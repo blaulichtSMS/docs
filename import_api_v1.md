@@ -1,28 +1,28 @@
-# BlaulichtSMS Import API
+# blaulichtSMS participant import API
 
 ## Version
-- V1.0: Erste Version (2016-08-12)
-- V1.1: Alarmteilnehmer Import (2017-02-15)
-- V1.2: Gruppen Import (2017-08-31)
-- V1.3: Alarmgeber Import (2019-11-11)
+- V1.0: first version (2016-08-12)
+- V1.1: participant import (2017-02-15)
+- V1.2: group import (2017-08-31)
+- V1.3: alarm trigger import (2019-11-11)
 
-## Allgemein
+## General
 
 ### Encoding
-Encoding ist immer UTF-8.
+The encoding shall be UTF-8.
 
-### Test Basis URL
+### Test base URL
 https://api-staging.blaulichtsms.net/blaulicht
 
-### Live Basis URL
+### Live base URL
 https://api.blaulichtsms.net/blaulicht
 
 ##  Import API
 
-Diese API ist ein zusätzliches Angebot zum bestehenden Import im [BlaulichtSMS Kundenbereich](https://start2.blaulichts.sms.net).
+This API provides and attitional facility to the import on the [web platform](https://start.blaulichtsms.net).
 
 
-**Vorsicht**:
+**Caution**:
 >Bei einem Import werden vorhandene Daten (z.B. Alarmteilnehmer, Gruppen, Zuordnung von Alarmteilnehmern und Alarmgebern zu Gruppen) und alle Änderungen, die an diesen vorgenommen wurden gelöscht und mit den neuen Daten überschrieben.
 >Diese Schnittstelle ist also vor allem in Fällen sinnvoll zu verwenden, wo die Verwaltung der Alarmteilnehmer in einem Drittsystem durchgeführt wird.
 >
