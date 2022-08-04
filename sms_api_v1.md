@@ -42,26 +42,26 @@ You can provide the `alarmText` and `coordinates` (location of incident).
 
 #### Koordinaten
 
-Falls Koordinaten übermittelt werden sollen, können diese in folgenden Formaten an einer beliebigen Stelle im Alarmtext stehen. Diese Koordianten werden aus der SMS extrahiert und zum Alarm gespeichert.
+Coordinates may occur anywhere within the alarm text. They will be parsed and added to the alarm. It is important that coordinates have the following format:
 
-**Via Längen- & Breitengrad (WGS84)**
+**longitude & latitude (WGS84)**
 
 ```
 [xx.xxxxxx,yy.yyyyyy]
 ```
-oder
+or
 ```
 (xx.xxxxxx,yy.yyyyyy)
 ```
-Zum Beispiel `(48.220778,16.3100209)` für Wien.
+e.g. `(48.220778,16.3100209)` for Vienna.
 
-**Via Rechts- & Hochwert**
+**easting & northing**
 ```
 XY: xxxxxxx.xx / yyyyyyy.yy
 ```
-Zum Beispiel `XY:4468503.333/5333317.780` für München.
+e.g. `XY:4468503.333/5333317.780` for Munich.
 
-Es gilt zu Beachten, dass sowohl der Rechtswert, als auch der Hochwert genau 7 Ziffern lang sein müssen. Optional kann mit einem Punkt getrennte Kommastellen einfügen. 
+Please note that the easting as well as the northing must consist of 7 digits. The decimal point and everything behind it are optional.
 
 #### Beispiele
 
