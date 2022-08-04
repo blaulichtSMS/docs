@@ -36,7 +36,7 @@ After a successful login you receive a session ID:
         "error" : null
     }
 
-THis session ID must be saved in a cookie / LocalStorage / SessionStorage gespeichert and will be used for all further requests.
+This session ID must be saved in a cookie / LocalStorage / SessionStorage gespeichert and will be used for all further requests.
 
 In case of an error you receive the following reply
 
@@ -60,48 +60,48 @@ _**/api/alarm/v1/dashboard/{{sessionId}}**_
 
 In order to receive information from a dashboard you must send an HTTP GET request to the above URL.
 
-Wenn die Session abgelaufen ist, erhält man eine **HTTP 401 Unauthorized** Antwort.
+If the session has expired, you will receive the reply **HTTP 401 Unauthorized**.
 
-Bei einer validen Session wird eine **HTTP 200 OK** Antwort im **json** Format mit folgendem Inhalt versendet:
+A valid session leads to the reply **HTTP 200 OK** as a **json** object with the following contents :
 
     {
         "customerId" : "123456",
         "customerName" : "FF Test",
-        "username" : "einsatzmonitor",
-        "integrations" : [ ], // Liste an Integrationen
-        "alarms" : [ ], // Liste von AlarmData Elementen
-        "infos" : [ ] // List von AlarmData Elementen
+        "username" : "dashboard",
+        "integrations" : [ ], // list of integrations
+        "alarms" : [ ], // list of AlarmData elements
+        "infos" : [ ] // list of AlarmData elements
     }
 
-Es wird immer der letzte Alarm versendet und alle in den letzten 24 Stunden aktive Alarme
+All active alarms within the last 24 hours will be returned, as well as the last one, regardless of its age.
 
 #### AlarmData
-- alarmId: Der eindeutige Identifier des Alarms
-- alarmGroups: Liste der Alarmgruppen Elemente (siehe AlarmGroup Object)
-- alarmDate : Zeitpunkt der Alarmierung
-- endDate: Ende der Antwortfunktion (falls aktiviert)
-- authorName: Name des Alarmgebers der den Alarm ausgelöst hat
-- alarmText: Der Alarmierungstext
-- needsAcknowledgement: Ob die Antwortfunktion aktiviert ist
-- usersAlertedCount: Anzahl der alarmierten Personen
-- geolocation: Siehe GeoLocation Object
-- recipients: Liste der Alarmteilnehmer - siehe AlarmRecipient Object
-- audioUrl: Url zum Abspielen des Audio-Alarms, falls ein solcher ausgelöst wurde
+- alarmId: the unique identifier of the alarm
+- alarmGroups: list of AlarmGroup elements (see AlarmGroup object)
+- alarmDate : time of alert
+- endDate: end of reply function time window (if activated)
+- authorName: name of the trigger
+- alarmText: the alarm text
+- needsAcknowledgement: true = the reply function is active
+- usersAlertedCount: number of alerted recipients
+- geolocation: see GeoLocation object
+- recipients: list of recipients - see AlarmRecipient object
+- audioUrl: Url of audio alarm, if used
 
 
-Ein Beispiel:
+An example:
 
     {
         "alarmId" : "32849abcdef23343",
-        "alarmGroups" : [ ], // Liste von AlarmGroup Elementen
-        "alarmDate"  : "2016-01-01T17:30:21.345Z", // UTC Datum
-        "endDate"  : "2016-01-01T17:30:21.345Z", // UTC Datum
-        "authorName" : "Max Mustermann",
-        "alarmText" : "Das ist ein Probealarm",
+        "alarmGroups" : [ ], // list of AlarmGroup elements
+        "alarmDate"  : "2016-01-01T17:30:21.345Z", // UTC date
+        "endDate"  : "2016-01-01T17:30:21.345Z", // UTC date
+        "authorName" : "John Doe",
+        "alarmText" : "This is a test",
         "needsAcknowledgement" : true,
         "usersAlertedCount" : 10,
-        "geolocation" : { }, // GeoLocation Element
-        "recipients" : [ ], // Liste von AlarmRecipient Elementen
+        "geolocation" : { }, // GeoLocation element
+        "recipients" : [ ], // list of AlarmRecipient elementes
         "audioUrl" : null
     }
 
