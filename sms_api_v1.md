@@ -27,17 +27,17 @@ The alarm code consists of the following parts. You must at least provide a cust
 
 - **K**{{customerId}} - mandatory -  customer ID e.g. `K100027`
 - **G**{{groupId}} - mandatory - alarm group e.g. `G1`
-- **A**{{templateId}} - optional - Alarmvorlage z.B. `A1`
-- **Q**0 - optional - Falls vorhanden: Antwortfunktion ist aktiv
-- **I** - optional - Falls vorhanden: Alarm ist eine Info
-- **Z** - optional - Falls vorhanden: Zustellbestätigung ist aktiv.
-- **M**{{indexNumber}} - optional - Index Nummer einer Alarmierung. Die Index Nummer dient zur Identifikation von zwei identen Alarmen. Achtung: Falls zwei oder mehr Alarme mit der selben Index Nummer ausgelöst werden, werden die späteren ignoriert.
-- **T**{{additionalMsisdn}} - optional - Nummern die zusätzlich alarmiert werden sollen z.B. `T+4366412345678`
+- **A**{{templateId}} - optional - alarm test template (edited on web platform) e.g. `A1`
+- **Q**0 - optional - participants can reply with YES/NO
+- **I** - optional - type is "info", not "alarm"
+- **Z** - optional - recipient confirmation is active
+- **M**{{indexNumber}} - optional - Index nuber of an alert. An identical index number identifies two identical alarms. Caution: Do not use the same index number if you want to trigger individual alarms. Use it only to merge alarms.
+- **T**{{additionalMsisdn}} - optional - additional msisdns to be alerted (not members of a group) e.g. `T+4366412345678`
 
 
 #### Alarm text
 
-Im Alarmtext werden der `alarmText` und die `coordinates` übergeben.
+You can provide the `alarmText` and `coordinates` (location of incident).
 
 
 #### Koordinaten
