@@ -20,7 +20,7 @@ The dashboard needed to use this API can be created on the web platform (start.b
 _**/api/alarm/v1/dashboard/login**_
 
 To log in you need to send an HTTP POST request with header `Content-Type: application/json` to the above URL.
-The login data are the same as for [https://dashboard.blaulichtsms.net](https://dashboard.blaulichtsms.net/#/).
+The login data is the same as for [https://dashboard.blaulichtsms.net](https://dashboard.blaulichtsms.net/#/).
 
     {
         "username" : "myUser",
@@ -28,7 +28,7 @@ The login data are the same as for [https://dashboard.blaulichtsms.net](https://
         "customerId" : "123456"
     }
 
-Nach einem erfolgreichen Login erhält man die Session ID:
+After a successful login you receive a session ID:
 
     {
         "success" : true,
@@ -36,30 +36,29 @@ Nach einem erfolgreichen Login erhält man die Session ID:
         "error" : null
     }
 
-Die Session ID muss in einem Cookie / LocalStorage / SessionStorage gespeichert werden und für die nächsten Requests verwendet werden.
+THis session ID must be saved in a cookie / LocalStorage / SessionStorage gespeichert and will be used for all further requests.
 
-Im Fehlerfall erhält man folgende Antwort:
+In case of an error you receive the following reply
 
     {
         "success" : false,
         "sessionId" : null,
-        "error" : "MISSING_INPUT_DATA" //für Error codes, siehe unten
+        "error" : "MISSING_INPUT_DATA" // error codes see below
     }
 
-#### Error Codes
+#### Error codes
 - MISSING_INPUT_DATA
 - MISSING_PASSWORD
 - MISSING_CUSTOMERID
 - MISSING_USERNAME
 - INVALID_CREDENTIALS
 
-Es wird immer nur eine paralelle Session unterstützt. 
+Only one session at a time is possible.
 
-### Dasboard Informationen
+### Dasboard information
 _**/api/alarm/v1/dashboard/{{sessionId}}**_
 
-Um Dashboard Informationen zu erhalten muss man einen HTTP GET Request auf die oben angebene URL absenden.
-
+In order to receive information from a dashboard you must send an HTTP GET request to the above URL.
 
 Wenn die Session abgelaufen ist, erhält man eine **HTTP 401 Unauthorized** Antwort.
 
