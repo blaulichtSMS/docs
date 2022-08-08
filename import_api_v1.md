@@ -170,7 +170,9 @@ Folgende Fehler können typischerweise auftreten:
 ### Import Alarmgeber - CSV
 _**/api/portal/v1/import/trigger/csv/{{customerId}}**_
 
-Die CSV Schnittstelle funktioniert wie die JSON Schnittstelle oben - es gelten die gleichen Richtlinien hinsichtlich Pflichtfelder, Format und optionale Felder und es werden die gleichen Fehlercodes zurückgegeben.
+The CSV interface works in the same way as the JSON interface above. The same rules regarding mandatory fields, optional fields, and error codes apply. Note the different URL.
+
+The following header needs to be included in the HTTP POST request:
 
 Folgende Header müssen bei dem HTTP POST Request auf die CSV Schnittstelle inkludiert werden:
 
@@ -186,7 +188,8 @@ Folgende Spalten (getrennt durch **;**) werden eingelesen:
 - email
 - groups
 
-Entscheidend ist die Reihenfolge der Daten, nicht die Beschriftung im Header. Die erste Zeile ist für den Header reserviert und wird beim Import übersprungen. Leere Zeilen am Ende des Files können zu Problemen führen und sollten nicht mitgeschickt werden. Gruppen sind per Beistrich (ohne Leerzeichen) zu trennen.
+It is important to keep this sequence of columns, as the first row i.e. the heading/label of the columns will be disregarded.
+Trailing empty lines may lead to problems, so remove them. Groups shall be separated by comma, not space.ohne Leerzeichen) zu trennen.
 
 #### Ein Beispiel
 
@@ -246,30 +249,31 @@ Folgende Fehler können typischerweise auftreten:
 - HTTP 403 Forbidden: Problem bei der Authentifizierung
 
 
-### Import Gruppen - CSV
-> Beim Importieren neuer Gruppen werden alle vorhanden Gruppen und die Zuordnung von Teilnehmern und Alarmgebern zu Gruppen gelöscht.
+### Import groups - CSV
+> Upon imorting new groups, all previous groups will be deleted as well as the assignment of participants to groups. 
 _**/api/portal/v1/import/groups/csv/{{customerId}}**_
 
-Die CSV Schnittstelle funktioniert wie die JSON Schnittstelle oben - es gelten die gleichen Richtlinien hinsichtlich Pflichtfelder, Format und optionale Felder und es werden die gleichen Fehlercodes zurückgegeben.
+The CSV interface works in the same way as the JSON interface above. The same rules regarding mandatory fields, optional fields, and error codes apply. Note the different URL.
 
-Folgende Header müssen bei dem HTTP POST Request auf die CSV Schnittstelle inkludiert werden:
+The following header needs to be included in the HTTP POST request:
 
 - `Content-Type: text/csv`
 - `X-Username: myUser`
 - `X-Password: mySuperSecretPwd`
 
-Folgende Spalten (getrennt durch **;**) werden eingelesen:
+The following columns (separated by **;**) will be read:
 
 - groupId
 - name
 - redo
 - redoInterval
 
-Entscheidend ist die Reihenfolge der Daten, nicht die Beschriftung im Header. Die erste Zeile ist für den Header reserviert und wird beim Import übersprungen. Leere Zeilen am Ende des Files können zu Problemen führen und sollten nicht mitgeschickt werden. Gruppen sind per Beistrich (ohne Leerzeichen) zu trennen.
+It is important to keep this sequence of columns, as the first row i.e. the heading/label of the columns will be disregarded.
+Trailing empty lines may lead to problems, so remove them. Groups shall be separated by comma, not space.
 
-#### Ein Beispiel
+#### An example
 
     groupId;name;redo;redoInterval
-    G1;Sirenenalarm;;
-    G2;Stiller Alarm;;
-    G3;Alle Kameraden;;
+    G1;siren;;
+    G2;silent alert;;
+    G3;whole brigade;;
