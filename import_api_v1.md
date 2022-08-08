@@ -124,16 +124,15 @@ Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf d
 
 #### ParticipantData
 
-- msisdn: string - mandatory - Telefonnummer im Format +4366412345678
-- givenname: string - mandatory - Vorname
-- surname: string - mandatory - Nachname
-- email: string - Optional - E-Mail Adresse
-- groups: Liste von strings - Pflichtfeld - Alarmgruppen
+- msisdn: string - mandatory - telephone number in format +(countrycode)(number), e.g. +445553939
+- givenname: string - mandatory - given name
+- surname: string - mandatory - surname
+- email: string - optional - e-mail address
+- groups: list of strings (alarm groups) - mandatory
 
-Sollten keine Alarmgruppen im Quellsystem verwaltet werden, empfehlen wir für alle Alarmeber immer die Gruppe G1 anzugeben, da es sich dabei in der Regel um die allgemeine Alarmgruppe handelt.
+If the external system does not distinguish between groups, it is recommended to import all praticipants to groups G1.
 
-#### Ein Beispiel
-
+#### An example
     {
         "customerId" : "100027",
         "username" : "import",
@@ -156,16 +155,13 @@ Sollten keine Alarmgruppen im Quellsystem verwaltet werden, empfehlen wir für a
         ]
     }
 
-Im Erfolgsfall erhält man HTTP 200 OK ohne Inhalt.
+In case of success the reply is HTTP 200 OK without further content.
 
-Im Fehlerfall wird ein HTTP Fehlercode geliefert, sowie in der Regel auch eine textuelle Beschreibung des Problems, um das debuggen zu erleichtern.
+In case of an error one of the following HTTP error codes will be returned to allow easier debgging:
 
-Folgende Fehler können typischerweise auftreten:
-
-- HTTP 400 BAD Request: Datenvalidierung fehlgeschlagen
-- HTTP 401 Unauthorized: Problem bei der Authentifizierung
-- HTTP 403 Forbidden: Problem bei der Authentifizierung
-
+- HTTP 400 BAD Request: data validation failed
+- HTTP 401 Unauthorized: error in authentication
+- HTTP 403 Forbidden: error in authentication
 
 ### Import Alarmgeber - CSV
 _**/api/portal/v1/import/trigger/csv/{{customerId}}**_
@@ -191,7 +187,7 @@ Folgende Spalten (getrennt durch **;**) werden eingelesen:
 It is important to keep this sequence of columns, as the first row i.e. the heading/label of the columns will be disregarded.
 Trailing empty lines may lead to problems, so remove them. Groups shall be separated by comma, not space.ohne Leerzeichen) zu trennen.
 
-#### Ein Beispiel
+#### An example
 
     givenname;surname;msisdn;email;groups  
     Max;Mustermann;+4366412345678;;G1  
@@ -201,7 +197,7 @@ Trailing empty lines may lead to problems, so remove them. Groups shall be separ
 ### Import Gruppen - JSON
 _**/api/portal/v1/import/groups/json**_
 
-Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL können die Gruppen eines Kunden importiert werden.
+Send an HTTP POST request with Header: `Content-Type: application/json` to the above URL to import groups for a customer ID
 
 - customerId: string - mandatory - Kundennummer
 - username: string - mandatory - Benutzername
@@ -210,13 +206,13 @@ Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf d
 
 #### GroupData
 
-- name: string - mandatory - Name der Gruppe
-- groupId: string - mandatory - GruppenId - Die Gruppen ID muss mit einem G beginnen und zwischen G0 und G999999999 liegen
-- redo: optional int - Optional - Ob eine Alarmwiederholung für diese Gruppe stattfinden soll (default: 0)
-- redoInterval: long - Optional - Wie oft eine Alarmwiederholung für diese Gruppe stattfinden soll (default: 0)
+- name: string - mandatory - name of group
+- groupId: string - mandatory - the groupId shall start with "G" and must be followed by a number between 0 and 999999999
+- redo: optional int - optional - if 1, every alarm with this group will be repeated (default: 0)
+- redoInterval: long - optional - the time delay for the alarm repetition if redo is 1 (default: 0)
 
 
-#### Ein Beispiel
+#### An example
 
     {
         "customerId" : "100027",
@@ -224,29 +220,27 @@ Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf d
         "password" : "mySuperSecretPwd",
         "groups": [
             {
-              "name": "Sirenenalarm",
+              "name": "siren",
               "groupId": "G1"
             },
             {
-              "name": "Stiller Alarm",
+              "name": "silent alert",
               "groupId": "G2"
             },
             {
-              "name": "Alle Kameraden",
+              "name": "whole brigade",
               "groupId": "G3"
             }
           ]
     }
 
-Im Erfolgsfall erhält man HTTP 200 OK ohne Inhalt.
+In case of success the reply is HTTP 200 OK without further content.
 
-Im Fehlerfall wird ein HTTP Fehlercode geliefert, sowie in der Regel auch eine textuelle Beschreibung des Problems, um das debuggen zu erleichtern.
+In case of an error one of the following HTTP error codes will be returned to allow easier debgging:
 
-Folgende Fehler können typischerweise auftreten:
-
-- HTTP 400 BAD Request: Datenvalidierung fehlgeschlagen
-- HTTP 401 Unauthorized: Problem bei der Authentifizierung
-- HTTP 403 Forbidden: Problem bei der Authentifizierung
+- HTTP 400 BAD Request: data validation failed
+- HTTP 401 Unauthorized: error in authentication
+- HTTP 403 Forbidden: error in authentication
 
 
 ### Import groups - CSV
