@@ -112,15 +112,15 @@ Trailing empty lines may lead to problems, so remove them. Groups shall be separ
 
 
 ### Import Alarmgeber - JSON
-> Das Importieren von Alarmgebern funktioniert analog zum Importieren von Alarmteilnehmern, im JSON Request muss man die Alarmeber als `trigger` übergeben. 
+> Importing alarm triggers works the same way as importing recipients, apart from the different list. 
 _**/api/portal/v1/import/trigger/json**_
 
-Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL können die Alarmgeber eines Kunden importiert werden.
+Send an HTTP POST request with header: `Content-Type: application/json` to the above URL to import triggers for a customer ID.
 
-- customerId: string - mandatory - Kundennummer
-- username: string - mandatory - Benutzername
-- password: string - mandatory - Passwort
-- trigger: Liste von Objekten vom Typ PartcipipantData - Alarmgeber
+- customerId: string - mandatory - customer ID
+- username: string - mandatory - user name
+- password: string - mandatory - password
+- trigger: list of objects of typ PartcipipantData
 
 #### ParticipantData
 
@@ -170,13 +170,11 @@ The CSV interface works in the same way as the JSON interface above. The same ru
 
 The following header needs to be included in the HTTP POST request:
 
-Folgende Header müssen bei dem HTTP POST Request auf die CSV Schnittstelle inkludiert werden:
-
 - `Content-Type: text/csv`
 - `X-Username: myUser`
 - `X-Password: mySuperSecretPwd`
 
-Folgende Spalten (getrennt durch **;**) werden eingelesen:
+The following columns (separated by **;**) will be read:
 
 - givenname
 - surname
@@ -199,10 +197,10 @@ _**/api/portal/v1/import/groups/json**_
 
 Send an HTTP POST request with Header: `Content-Type: application/json` to the above URL to import groups for a customer ID
 
-- customerId: string - mandatory - Kundennummer
-- username: string - mandatory - Benutzername
-- password: string - mandatory - Passwort
-- groups: Liste von Objekten vom Typ GroupData - Gruppen
+- customerId: string - mandatory
+- username: string - mandatory
+- password: string - mandatory
+- groups: liste of objects of type GroupData
 
 #### GroupData
 
