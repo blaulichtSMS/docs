@@ -28,29 +28,28 @@ This API provides and attitional facility to the import on the [web platform](ht
 >
 >It is recommendend to first try the import with a dummy account in order to prevent loss of data. Please contact us for a dummy account.
 
->Authentication is done by customer ID, user name, and password.
+Authentication is done by customer ID, user name, and password.
 
 ### Import of recipients - JSON
 _**/api/portal/v1/import/participants/json**_
 
-Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL können die Alarmteilnehmer eines Kunden importiert werden.
-
-- customerId: string - Pflichtfeld - Kundennummer
-- username: string - Pflichtfeld - Benutzername
-- password: string - Pflichtfeld - Passwort
-- participants: Liste von Objekten vom Typ PartcipipantData - Alarmteilnehmer
+To import recipients for a customer ID, send an HTTP POST request with header: `Content-Type: application/json` to the above URL.
+- customerId: string - mandatory - customer ID
+- username: string - mandatory - user name
+- password: string - mandatory - password
+- participants: list of PartcipipantData objects
 
 #### ParticipantData
 
-- msisdn: string - Pflichtfeld - Telefonnummer im Format +4366412345678
-- givenname: string - Pflichtfeld - Vorname
-- surname: string - Pflichtfeld - Nachname
-- email: string - Optional - E-Mail Adresse
-- groups: Liste von strings - Pflichtfeld - Alarmgruppen
+- msisdn: string - mandatory - telephone number in format +(countrycode)(number), e.g. +445553939
+- givenname: string - mandatory - given name
+- surname: string - mandatory - surname
+- email: string - optional - e-mail address
+- groups: list of strings (alarm groups) - mandatory
 
-Sollten keine Alarmgruppen im Quellsystem verwaltet werden, empfehlen wir für alle Teilnehmer immer die Gruppe G1 anzugeben, da es sich dabei in der Regel um die allgemeine Alarmgruppe handelt.
+If the external system does not distinguish between groups, it is recommended to import all praticipants to groups G1.
 
-#### Ein Beispiel
+#### An example
 
     {
         "customerId" : "100027",
@@ -59,44 +58,42 @@ Sollten keine Alarmgruppen im Quellsystem verwaltet werden, empfehlen wir für a
         "participants" : [
             {
               "msisdn" : "+4366412345678",
-              "givenname" : "Max",
-              "surname" : "Mustermann",
+              "givenname" : "John",
+              "surname" : "Doe",
               "email" : null,
               "groups" : ["G1"]
             },
             {
               "msisdn" : "+4367612345678",
-              "givenname" : "Martina",
-              "surname" : "Musterfrau",
-              "email" : "martina.musterfrau@example.com",
+              "givenname" : "Joanne",
+              "surname" : "Doe",
+              "email" : "joanne@doe.com",
               "groups" : ["G1", "G2"]
             }
         ]
     }
 
-Im Erfolgsfall erhält man HTTP 200 OK ohne Inhalt.
+In case of success the reply is HTTP 200 OK without further content.
 
-Im Fehlerfall wird ein HTTP Fehlercode geliefert, sowie in der Regel auch eine textuelle Beschreibung des Problems, um das debuggen zu erleichtern.
+In case of an error one of the following HTTP error codes will be returned to allow easier debgging:
 
-Folgende Fehler können typischerweise auftreten:
-
-- HTTP 400 BAD Request: Datenvalidierung fehlgeschlagen
-- HTTP 401 Unauthorized: Problem bei der Authentifizierung
-- HTTP 403 Forbidden: Problem bei der Authentifizierung
+- HTTP 400 BAD Request: data validation failed
+- HTTP 401 Unauthorized: error in authentication
+- HTTP 403 Forbidden: error in authentication
 
 
-### Import Alarmteilnehmer - CSV
+### Import participants - CSV
 _**/api/portal/v1/import/participants/csv/{{customerId}}**_
 
-Die CSV Schnittstelle funktioniert wie die JSON Schnittstelle oben - es gelten die gleichen Richtlinien hinsichtlich Pflichtfelder, Format und optionale Felder und es werden die gleichen Fehlercodes zurückgegeben.
+The CSV interface works in the same way as the JSON interface above. The same rules regarding mandatory fields, optional fields, and error codes apply. Note the different URL.
 
-Folgende Header müssen bei dem HTTP POST Request auf die CSV Schnittstelle inkludiert werden:
+The following header needs to be included in the HTTP POST request:
 
 - `Content-Type: text/csv`
 - `X-Username: myUser`
 - `X-Password: mySuperSecretPwd`
 
-Folgende Spalten (getrennt durch **;**) werden eingelesen:
+The following columns (separated by **;**) will be read:
 
 - givenname
 - surname
@@ -104,13 +101,14 @@ Folgende Spalten (getrennt durch **;**) werden eingelesen:
 - email
 - groups
 
-Entscheidend ist die Reihenfolge der Daten, nicht die Beschriftung im Header. Die erste Zeile ist für den Header reserviert und wird beim Import übersprungen. Leere Zeilen am Ende des Files können zu Problemen führen und sollten nicht mitgeschickt werden. Gruppen sind per Beistrich (ohne Leerzeichen) zu trennen.
+It is important to keep this sequence of columns, as the first row i.e. the heading/label of the columns will be disregarded.
+Trailing empty lines may lead to problems, so remove them. Groups shall be separated by comma, not space.
 
-#### Ein Beispiel
+#### An example
 
     givenname;surname;msisdn;email;groups  
-    Max;Mustermann;+4366412345678;;G1  
-    Martina;Musterfrau;+4367612345678;martina.musterfrau@example.com;G1,G2
+    John;Doe;+4366412345678;;G1  
+    Joanne;Doe;+4367612345678;joane@doe.com;G1,G2
 
 
 ### Import Alarmgeber - JSON
@@ -119,16 +117,16 @@ _**/api/portal/v1/import/trigger/json**_
 
 Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL können die Alarmgeber eines Kunden importiert werden.
 
-- customerId: string - Pflichtfeld - Kundennummer
-- username: string - Pflichtfeld - Benutzername
-- password: string - Pflichtfeld - Passwort
+- customerId: string - mandatory - Kundennummer
+- username: string - mandatory - Benutzername
+- password: string - mandatory - Passwort
 - trigger: Liste von Objekten vom Typ PartcipipantData - Alarmgeber
 
 #### ParticipantData
 
-- msisdn: string - Pflichtfeld - Telefonnummer im Format +4366412345678
-- givenname: string - Pflichtfeld - Vorname
-- surname: string - Pflichtfeld - Nachname
+- msisdn: string - mandatory - Telefonnummer im Format +4366412345678
+- givenname: string - mandatory - Vorname
+- surname: string - mandatory - Nachname
 - email: string - Optional - E-Mail Adresse
 - groups: Liste von strings - Pflichtfeld - Alarmgruppen
 
@@ -202,15 +200,15 @@ _**/api/portal/v1/import/groups/json**_
 
 Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL können die Gruppen eines Kunden importiert werden.
 
-- customerId: string - Pflichtfeld - Kundennummer
-- username: string - Pflichtfeld - Benutzername
-- password: string - Pflichtfeld - Passwort
+- customerId: string - mandatory - Kundennummer
+- username: string - mandatory - Benutzername
+- password: string - mandatory - Passwort
 - groups: Liste von Objekten vom Typ GroupData - Gruppen
 
 #### GroupData
 
-- name: string - Pflichtfeld - Name der Gruppe
-- groupId: string - Pflichtfeld - GruppenId - Die Gruppen ID muss mit einem G beginnen und zwischen G0 und G999999999 liegen
+- name: string - mandatory - Name der Gruppe
+- groupId: string - mandatory - GruppenId - Die Gruppen ID muss mit einem G beginnen und zwischen G0 und G999999999 liegen
 - redo: optional int - Optional - Ob eine Alarmwiederholung für diese Gruppe stattfinden soll (default: 0)
 - redoInterval: long - Optional - Wie oft eine Alarmwiederholung für diese Gruppe stattfinden soll (default: 0)
 
