@@ -23,14 +23,14 @@ This API provides and attitional facility to the import on the [web platform](ht
 
 
 **Caution**:
->Bei einem Import werden vorhandene Daten (z.B. Alarmteilnehmer, Gruppen, Zuordnung von Alarmteilnehmern und Alarmgebern zu Gruppen) und alle Änderungen, die an diesen vorgenommen wurden gelöscht und mit den neuen Daten überschrieben.
->Diese Schnittstelle ist also vor allem in Fällen sinnvoll zu verwenden, wo die Verwaltung der Alarmteilnehmer in einem Drittsystem durchgeführt wird.
+>Upon import all existing data (recipients, groups, assigments of triggers to groups and of recipients to groups) will be overwritten with new data.
+>This interface makes sense if the administration of participants is done by an external system. The external system periodically updates the data in blaulichtSMS.
 >
->Zusätzlich wird empfohlen die Importfunktion mit einem Testaccount / auf einem Testsystem zu testen, um Datenverlust zu vermeiden.
+>It is recommendend to first try the import with a dummy account in order to prevent loss of data. Please contact us for a dummy account.
 
-Die Authentifizierung findet über Kundennummer, Benutzernamen und Passwort statt.
+>Authentication is done by customer ID, user name, and password.
 
-### Import Alarmteilnehmer - JSON
+### Import of recipients - JSON
 _**/api/portal/v1/import/participants/json**_
 
 Mittels HTTP POST Request mit dem Header: `Content-Type: application/json` auf die oben angebene URL können die Alarmteilnehmer eines Kunden importiert werden.
