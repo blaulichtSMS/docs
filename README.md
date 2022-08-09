@@ -6,7 +6,6 @@
 
 * API description: [Alarm API](./alarm_api_v1.md)
 * PHP example implementation: [Alarm API PHP example](./examples/alarm-api/php/alarm-api-example.php)
-* Frequently asked questions: [FAQ Alarm API](https://github.com/blaulichtSMS/docs/issues?q=label:alarm-api%20label:question)
 
 Please contact us if you would like to use an automatic alarm trigger: [contact](https://blaulichtsms.net/support/#kontaktformular)
 
@@ -16,7 +15,6 @@ Please contact us if you would like to use an automatic alarm trigger: [contact]
 > Create alarms by SMS
 
 * API description: [SMS API](./sms_api_v1.md)
-* Frequently asked questions: [FAQ SMS API](https://github.com/blaulichtSMS/docs/issues?q=label:sms-api%20label:question)
 
 Please contact us if you would like to use an SMS alarm trigger: [contact](https://blaulichtsms.net/support/#kontaktformular)
 
@@ -27,7 +25,6 @@ Please contact us if you would like to use an SMS alarm trigger: [contact](https
 * API description: [Dashboard API](./dashboard_api_v1.md)
 * Javascript example implementation: [Dashboard API Javascript Beispiel](./examples/dashboard-api/javascript/)
 * PHP example implementation: [Dashboard API PHP Beispiel](./examples/dashboard-api/php/)
-* Frequently asked questions: [FAQ Dashboard API](https://github.com/blaulichtSMS/docs/issues?q=label:dashboard-api%20label:question)
 
 You need the login data of a dashboard to use this API. A dashboard can be created by an admin on the web platform (start.blaulichtsms.net).
 
