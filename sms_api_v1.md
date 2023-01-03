@@ -28,7 +28,7 @@ The alarm code consists of the following parts. You must at least provide a cust
 - **K**{{customerId}} - mandatory -  customer ID e.g. `K100027`
 - **G**{{groupId}} - mandatory - alarm group e.g. `G1`
 - **A**{{templateId}} - optional - alarm test template (edited on web platform) e.g. `A1`
-- **Q**0 - optional - participants can reply with YES/NO
+- **Q**0 - optional - participants can reply with YES/NO; leave Q0 out to disable it
 - **I** - optional - type is "info", not "alarm"
 - **Z** - optional - recipient confirmation is active
 - **M**{{indexNumber}} - optional - Index nuber of an alert. An identical index number identifies two identical alarms. Caution: Do not use the same index number if you want to trigger individual alarms. Use it only to merge alarms.
