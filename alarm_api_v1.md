@@ -34,7 +34,7 @@ To trigger an alarm, send an HTTP POST REQUEST with header `Content-Type: applic
 - type: alarm | info - mandatory - event type
 - hideTriggerDetails: boolean - optional - do not send details of alarm trigger
 - alarmText: string - optional - content of alarm
-- indexNumber: integer- optional - The index number serves to distinguish different alarms. A second alarm with the same index number will be ignored.
+- indexNumber: integer- optional - The index number serves to distinguish different alarms. A second alarm with the same index number will update the alarm text.
 - needsAcknowledgement: boolean - mandatory - reply function
 - startDate: string - optional - The date of an alarm in case it is to be triggered in the future. The format shall be UTC e.g. :`"2017-01-27T14:49:52.000Z"` 
 - duration: integer - conditional - duration for which the reply function is enabled
