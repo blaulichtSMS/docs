@@ -41,11 +41,23 @@ To import recipients for a customer ID, send an HTTP POST request with header: `
 
 #### ParticipantData
 
-- msisdn: string - mandatory - telephone number in format +(countrycode)(number), e.g. +445553939
-- givenname: string - mandatory - given name
-- surname: string - mandatory - surname
-- email: string - optional - e-mail address
-- groups: list of strings (alarm groups) - mandatory
+- **msisdn** (`string`, **required**)  
+  Telephone number in the format `+(countrycode)(number)`, e.g. `+445553939`.
+
+- **givenname** (`string`, **required**)  
+  Given name.
+
+- **surname** (`string`, **required**)  
+  Surname.
+
+- **email** (`string`, optional)  
+  E-mail address.
+
+- **groups** (`list<string>`, **required**)  
+  List of alarm groups.
+
+- **comment** (`string`, optional)  
+  Additional comment (Zusatzinfo).
 
 If the external system does not distinguish between groups, it is recommended to import all praticipants to groups G1.
 
@@ -68,7 +80,8 @@ If the external system does not distinguish between groups, it is recommended to
               "givenname" : "Joanne",
               "surname" : "Doe",
               "email" : "joanne@doe.com",
-              "groups" : ["G1", "G2"]
+              "groups" : ["G1", "G2"],
+              "comment" : "Test Comment"
             }
         ]
     }
