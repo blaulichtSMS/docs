@@ -38,7 +38,7 @@ You need the login data of a dashboard to use this API. A dashboard can be creat
 
 ## Export API*
 
-> Export participants via JSON, csv or Excel (XLSX)
+> Export participants via JSON
 
 * API description: [Export API](./export_api_v1.md)
 
