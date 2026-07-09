@@ -36,6 +36,12 @@ You need the login data of a dashboard to use this API. A dashboard can be creat
 
 * API description: [Import API](./import_api_v1.md)
 
+## Export API*
+
+> Export participants via JSON, csv or Excel (XLSX)
+
+* API description: [Export API](./export_api_v1.md)
+
 ## Questions in case of problems
 
 * Do not hesitate to [contact us](https://blaulichtsms.net/support/#kontaktformular)
