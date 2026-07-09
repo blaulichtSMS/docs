@@ -36,7 +36,7 @@ You need the login data of a dashboard to use this API. A dashboard can be creat
 
 * API description: [Import API](./import_api_v1.md)
 
-## Export API*
+## Export API
 
 > Export participants via JSON
 
