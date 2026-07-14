@@ -7,6 +7,7 @@
 - V1.3: List Alarm end point added
 - V1.4: Change of Alarm Data Element: extension of recipients, deprecation of participants, Geolocation added (2017-01-19)
 - V1.5: extended the API by indexNumber
+- V1.6: added hideAfter and keyword parameters
 
 ## General
 
@@ -36,6 +37,8 @@ To trigger an alarm, send an HTTP POST REQUEST with header `Content-Type: applic
 - alarmText: string - optional - content of alarm
 - indexNumber: integer- optional - The index number serves to distinguish different alarms. A second alarm with the same index number will update the alarm text.
 - needsAcknowledgement: boolean - mandatory - reply function
+- hideAfter: integer - optional - the alarm is anonymized after the integer's value in days - values <=0 mean no anonymization
+- keyword: string - optional - keyword of the alarm, e.g. "B1"
 - startDate: string - optional - The date of an alarm in case it is to be triggered in the future. The format shall be UTC e.g. :`"2017-01-27T14:49:52.000Z"` 
 - duration: integer - conditional - duration for which the reply function is enabled
 - recipientConfirmation: boolean - optional - turn on/off confirmation that SMS was received (charges apply)
