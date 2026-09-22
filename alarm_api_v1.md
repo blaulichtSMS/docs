@@ -33,11 +33,13 @@ To trigger an alarm, send an HTTP POST REQUEST with header `Content-Type: applic
 - customerId: string - mandatory - customer ID
 - type: alarm | info - mandatory - event type
 - hideTriggerDetails: boolean - optional - do not send details of alarm trigger
+- keyword: String - optional - keyword of the alarm
 - alarmText: string - optional - content of alarm
 - indexNumber: integer- optional - The index number serves to distinguish different alarms. A second alarm with the same index number will update the alarm text.
 - needsAcknowledgement: boolean - mandatory - reply function
 - startDate: string - optional - The date of an alarm in case it is to be triggered in the future. The format shall be UTC e.g. :`"2017-01-27T14:49:52.000Z"` 
 - duration: integer - conditional - duration for which the reply function is enabled
+- hideAfterDays: integer - optional - after the number of days provided, the alarm will be anonymised
 - recipientConfirmation: boolean - optional - turn on/off confirmation that SMS was received (charges apply)
 - recipientConfirmationTarget: string - optional - msisdn of recipient of SMS confirmation
 - template: string - optional - Alarm text code e.g. `"A1"`
